@@ -32,7 +32,6 @@ services:
       - ./img:/var/www/html/img
       - ./template:/var/www/html/template
       - ./themes:/var/www/html/themes
-
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
