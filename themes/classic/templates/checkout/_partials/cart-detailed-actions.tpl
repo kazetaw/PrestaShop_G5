@@ -51,6 +51,29 @@
       </div>
     {/if}
   </div>
+  <!-- Modal สำหรับอัพโหลดสลิป -->
+  <div class="modal fade" id="attachmentModal" tabindex="-1" role="dialog" aria-labelledby="attachmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="attachmentModalLabel">{l s='อัพโหลดสลิปการโอน' d='Shop.Theme.Actions'}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- เพิ่มฟอร์มอัพโหลดสลิป -->
+          <form action="/upload_script.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="slipFile">{l s='เลือกไฟล์สลิป:' d='Shop.Theme.Actions'}</label>
+              <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".pdf, .jpg, .png" required>
+            </div>
+            <button type="submit" class="btn btn-primary">{l s='อัพโหลด' d='Shop.Theme.Actions'}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
  
   <!-- Modal สำหรับจ่ายเงิน -->
   <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
@@ -71,7 +94,7 @@
             <label for="html" style="display: inline-block; margin-right: 15px;">ธนาคาร</label>
             <input type="radio" id="css" name="fav_language" value="QR" onclick="showQRCode()" style="display: inline-block; margin-right: 5px;">
             <label for="css" style="display: inline-block; margin-right: 15px;">QR Code</label>
-            <input type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptPay()" style="display: inline-block;">
+            <input type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptpayDetails()" style="display: inline-block;">
             <label for="javascript" style="display: inline-block;">Promtpay</label>
             <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
             <div id="bankDetails" style="display:none;">
@@ -81,16 +104,54 @@
             <div id="qrCodeDetails" style="display:none; text-align: center;">
               <img src="https://th.bing.com/th/id/OIP.HHacbpUBSuYqZfXIWFn-IQHaHa?rs=1&pid=ImgDetMain" alt="QR Code Logo" style="width: 100px; border: 1px solid #ccc; padding: 5px;">
             </div>
+            <!-- แสดงข้อมูลของพร้อมเพย์มื่อคลิกที่ "Promtpay" -->
+            <div id="promtpayDetails" style="display:none;">
+              <p>{l s='Promtpay: 0221115554 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
+            </div>
           </form>
           <!-- เพิ่มฟอร์มหรือข้อมูลเพิ่มเติมตามที่คุณต้องการ -->
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">{l s='แนบหลักฐานการโอน' d='Shop.Theme.Actions'}</button>
-          <!-- เพิ่มปุ่มหรือลิงค์ที่ต้องการให้ผู้ใช้ทำการจ่ายเงิน -->
+          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#attachmentModal">
+            {l s='แนบหลักฐานการโอน' d='Shop.Theme.Actions'}
+          </button>          <!-- เพิ่มปุ่มหรือลิงค์ที่ต้องการให้ผู้ใช้ทำการจ่ายเงิน -->
         </div>
       </div>
     </div>
   </div>
+  <!-- JavaScript เพื่อแจ้งเตือนเมื่ออัพโหลดสลิปสำเร็จ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const attachmentModal = new bootstrap.Modal(document.getElementById('attachmentModal'));
+  
+      // ฟังก์ชันที่เรียกเมื่ออัพโหลดสลิปสำเร็จ
+      function handleUploadSuccess() {
+        // ปิด Modal
+        attachmentModal.hide();
+        
+        // แสดงข้อความแจ้งเตือนหรือดำเนินการเพิ่มเติมตามที่คุณต้องการ
+        alert('ชำระเงินสำเร็จ! ขอบคุณที่อัพโหลดสลิปการโอนเงิน.');
+  
+        // คำสั่งเพิ่มเติมที่ต้องการทำหลังจากปิด Modal
+        // เช่น การเปลี่ยนหน้าหรือทำการรีเฟรช
+      }
+  
+      // จำลองการเรียกใช้ handleUploadSuccess() เมื่ออัพโหลดสำเร็จ (ในทางปฏิบัติ คุณต้องเปลี่ยนแปลงฟังก์ชันนี้)
+      const uploadForm = document.querySelector('#attachmentModal form');
+      uploadForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+  
+        // สำหรับการจำลอง ให้เรียกใช้ handleUploadSuccess() หลังจากเสร็จสิ้นการอัพโหลด
+        setTimeout(handleUploadSuccess, 2000);
+      });
+  
+      // เพิ่มโค้ดที่จะทำงานเมื่อ Modal ถูกปิด
+      attachmentModal._element.addEventListener('hidden.bs.modal', function () {
+        // เพิ่มโค้ดที่ต้องการทำหลังจาก Modal ถูกปิด
+      });
+    });
+  </script>
+  
   
   <script>
     function showQRCode() {
@@ -105,9 +166,19 @@
       document.getElementById('bankDetails').style.display = 'block';
       // ซ่อน QR Code
       document.getElementById('qrCodeDetails').style.display = 'none';
+      //ซ่อน Promtpay
+      document.getElementById('promtpayDetails').style.display = 'none';
+    }
+    function showPromptpayDetails() {
+      // แสดงข้อมูลพร้อมเพย์เมื่อคลิกที่ "Promtpay"
+      document.getElementById('promtpayDetails').style.display = 'block';
+      // ซ่อน QR Code
+      document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
+      // ซ่อนข้อมูลธนาคาร
     }
     
   </script>
+  
   
   
  {/block}
