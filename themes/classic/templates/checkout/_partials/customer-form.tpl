@@ -28,7 +28,6 @@
   {if $field.name === 'password' and $guest_allowed}
       <p class="form-informations">
         <br>
-        <span class="text-muted form-informations-subtitle">{l s='And save time on your next order!' d='Shop.Theme.Checkout'}</span>
       </p>
       {$smarty.block.parent}
   {else}
