@@ -52,7 +52,6 @@
           {if $guest_allowed}
             {l s='issue invoice' d='Shop.Theme.Checkout'}
           {else}
-            {l s='Create an account' d='Shop.Theme.Customeraccount'}
           {/if}
         </a>
       </li>
