@@ -28,10 +28,7 @@
 
   {block name='product_quantities'}
     {if $product.show_quantities}
-      <div class="product-quantities">
-        <label class="label">{l s='In stock' d='Shop.Theme.Catalog'}</label>
-        <span data-stock="{$product.quantity}" data-allow-oosp="{$product.allow_oosp}">{$product.quantity} {$product.quantity_label}</span>
-      </div>
+
     {/if}
   {/block}
 
