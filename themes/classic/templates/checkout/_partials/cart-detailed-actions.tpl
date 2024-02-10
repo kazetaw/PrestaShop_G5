@@ -158,6 +158,8 @@
       // แสดง QR Code เมื่อคลิกที่ "QR Code"
       document.getElementById('qrCodeDetails').style.display = 'block';
       // ซ่อนข้อมูลธนาคาร
+      document.getElementById('promtpayDetails').style.display = 'none';
+
       document.getElementById('bankDetails').style.display = 'none';
     }
   
