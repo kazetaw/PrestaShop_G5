@@ -27,9 +27,7 @@
   {/block}
 
   {block name='product_quantities'}
-    {if $product.show_quantities}
 
-    {/if}
   {/block}
 
   {block name='product_availability_date'}
