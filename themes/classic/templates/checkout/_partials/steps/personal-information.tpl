@@ -58,7 +58,7 @@
           {if !$show_login_form} aria-selected="true"{/if}
           >
           {if $guest_allowed}
-            {l s='Receive a tax invoice' d='Shop.Theme.Checkout'}
+            {l s='issue invoice' d='Shop.Theme.Checkout'}
           {else}
             {l s='Create an account' d='Shop.Theme.Customeraccount'}
           {/if}
