@@ -96,7 +96,7 @@
             <form action="/upload_script.php" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="slipFile" class="col-sm-3 col-form-label">{l s='เลือกไฟล์สลิป:' d='Shop.Theme.Actions'}</label><br>
-                <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".pdf, .jpg, .png" required>
+                <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
               </div>
               <button type="submit" class="btn btn-primary">{l s='อัพโหลด' d='Shop.Theme.Actions'}</button>
             </form>
@@ -120,9 +120,11 @@
         
         // แสดงข้อความแจ้งเตือนหรือดำเนินการเพิ่มเติมตามที่คุณต้องการ
         alert('ชำระเงินสำเร็จ! ขอบคุณที่อัพโหลดสลิปการโอนเงิน.');
-  
-        // คำสั่งเพิ่มเติมที่ต้องการทำหลังจากปิด Modal
-        // เช่น การเปลี่ยนหน้าหรือทำการรีเฟรช
+    
+        // เปลี่ยนหน้า
+        window.location.href = '/new_page.html'; // แทนที่ '/new_page.html' ด้วย URL ที่คุณต้องการ
+    }
+    
       }
   
       // จำลองการเรียกใช้ handleUploadSuccess() เมื่ออัพโหลดสำเร็จ (ในทางปฏิบัติ คุณต้องเปลี่ยนแปลงฟังก์ชันนี้)
@@ -140,9 +142,27 @@
       });
     });
   </script>
-  
-  
   <script>
+    function validateFile() {
+      var fileInput = document.getElementById('slipFile');
+      var fileName = fileInput.value;
+      var ext = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
+
+      // ตรวจสอบว่าไฟล์มีนามสกุล .png หรือ .jpg หรือไม่
+      if (ext == 'png' || ext == 'jpg') {
+        // ตรวจสอบว่าไฟล์มีตัวอักษรหรือไม่
+        var hasText = /[a-zA-Z]/.test(fileName);
+        if (hasText) {
+          return true;  // ไฟล์ถูกต้อง
+        } else {
+          alert('กรุณาเลือกไฟล์ที่มีตัวอักษร');
+          return false;  // ไฟล์ไม่มีตัวอักษร
+        }
+      } else {
+        alert('กรุณาเลือกไฟล์ที่มีนามสกุล .png หรือ .jpg');
+        return false;  // ไฟล์ไม่มีนามสกุลที่ถูกต้อง
+      }
+    }
     function showQRCode() {
       // แสดง QR Code เมื่อคลิกที่ "QR Code"
       document.getElementById('qrCodeDetails').style.display = 'block';
@@ -167,9 +187,5 @@
       document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
       // ซ่อนข้อมูลธนาคาร
     }
-    
   </script>
-  
-  
-  
  {/block}

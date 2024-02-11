@@ -8,16 +8,16 @@
 
             {block name='order_confirmation_header'}
               <h3 class="h1 card-title">
-                <i class="material-icons rtl-no-flip done">&#xE876;</i>{l s='Your order is confirmed' d='Shop.Theme.Checkout'}
+                <i class="material-icons rtl-no-flip done">&#xE876;</i>{l s='ทำการซื้อ Voucher สำเร็จ ขอบคุณที่สนับสนุน!🙏' d='Shop.Theme.Checkout'}
               </h3>
             {/block}
 
             <p>
-              {l s='An email has been sent to your mail address %email%.' d='Shop.Theme.Checkout' sprintf=['%email%' => $order_customer.email]}
+              {l s='เมื่อต้องการ' d='Shop.Theme.Checkout' sprintf=['%email%' => $order_customer.email]}
               {if $order.details.invoice_url}
                 {* [1][/1] is for a HTML tag. *}
                 {l
-                  s='You can also [1]download your invoice[/1]'
+                  s='คุณสามารถดาวน์โหลดใบกำกับภาษีได้ที่นี่ [1]download your invoice[/1]'
                   d='Shop.Theme.Checkout'
                   sprintf=[
                     '[1]' => "<a href='{$order.details.invoice_url}'>",
@@ -60,10 +60,7 @@
               <li id="order-reference-value">{l s='Order reference: %reference%' d='Shop.Theme.Checkout' sprintf=['%reference%' => $order.details.reference]}</li>
               <li>{l s='Payment method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.details.payment]}</li>
               {if !$order.details.is_virtual}
-                <li>
-                  {l s='Shipping method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.carrier.name]}<br>
-                  <em>{$order.carrier.delay}</em>
-                </li>
+
               {/if}
               {if $order.details.recyclable}
                 <li>  
@@ -80,15 +77,7 @@
 
   {block name='hook_payment_return'}
     {if ! empty($HOOK_PAYMENT_RETURN)}
-    <section id="content-hook_payment_return" class="card definition-list">
-      <div class="card-block">
-        <div class="row">
-          <div class="col-md-12">
-            {$HOOK_PAYMENT_RETURN nofilter}
-          </div>
-        </div>
-      </div>
-    </section>
+    
     {/if}
   {/block}
 
