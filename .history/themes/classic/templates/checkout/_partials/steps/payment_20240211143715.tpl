@@ -162,6 +162,19 @@
   </div>
 
   {hook h='displayPaymentByBinaries'}
+  {if isset($order_confirmation)}
+    <div class="alert alert-success" role="alert">
+      {l s='Your order has been successfully placed. Order number: '}{$order_confirmation.order_number}
+    </div>
+  {/if}
+  <!-- สิ้นสุดโค้ดที่เพิ่มขึ้น -->
+
+  {hook h='displayCheckoutBeforeConfirmation'}
+  
+  {if $show_final_summary}
+    {include file='checkout/_partials/order-final-summary.tpl'}
+  {/if}
+
 
 {/block}
 

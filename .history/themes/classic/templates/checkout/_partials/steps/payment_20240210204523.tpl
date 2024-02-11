@@ -3,14 +3,7 @@
 {block name='step_content'}
 
   {hook h='displayPaymentTop'}
-  <p>ธนาคาร 022-222-2222 มหาวิทยาลัยขอนแก่น</p>
-  <p>พร้อทเพย์ 099-999-9999 มหาวิทยาลัยขอนแก่น</p>
-  <p>คิวอาร์โค้ด 0448447561 มหาวิทยาลัยขอนแก่น</p>
-  <div class="form-group">
-    <label for="slipFile" class="col-sm-3 col-form-label">{l s='เลือกไฟล์สลิป:' d='Shop.Theme.Actions'}</label><br>
-    <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
-  </div>
-  
+
   {* used by javascript to correctly handle cart updates when we are on payment step (eg vouchers added) *}
   <div style="display:none" class="js-cart-payment-step-refresh"></div>
 
@@ -163,5 +156,26 @@
 
   {hook h='displayPaymentByBinaries'}
 
+function checkFileType() {
+    var fileInput = document.getElementById('fileInput'); // สมมติว่า input ที่ใช้ในการอัพโหลดมี id เป็น fileInput
+
+    // ตรวจสอบว่ามีการเลือกไฟล์หรือไม่
+    if (fileInput.files.length > 0) {
+        var fileName = fileInput.files[0].name;
+        
+        // ตรวจสอบนามสกุลของไฟล์
+        if (fileName.endsWith('.pdf') || fileName.endsWith('.jpg') || fileName.endsWith('.jpeg') || fileName.endsWith('.png')) {
+            alert('File type is valid.'); // สามารถเปลี่ยนเป็นการทำงานตามความต้องการ เช่น เปิด modal แจ้งเตือน
+            return true;
+        } else {
+            alert('Invalid file type. Please upload a PDF, JPG, or PNG file.'); // สามารถเปลี่ยนเป็นการทำงานตามความต้องการ เช่น เปิด modal แจ้งเตือน
+            return false;
+        }
+    } else {
+        alert('Please select a file.'); // สามารถเปลี่ยนเป็นการทำงานตามความต้องการ เช่น เปิด modal แจ้งเตือน
+        return false;
+    }
+}
+<form id="paymentForm" action="#" method="post" onsubmit="return checkFileType();">  
 {/block}
 

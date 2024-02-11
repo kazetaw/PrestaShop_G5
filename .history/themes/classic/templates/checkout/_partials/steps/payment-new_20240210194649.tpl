@@ -1,16 +1,35 @@
+{**
+    * Copyright since 2007 PrestaShop SA and Contributors
+    * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
+    *
+    * NOTICE OF LICENSE
+    *
+    * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
+    * that is bundled with this package in the file LICENSE.md.
+    * It is also available through the world-wide-web at this URL:
+    * https://opensource.org/licenses/AFL-3.0
+    * If you did not receive a copy of the license and are unable to
+    * obtain it through the world-wide-web, please send an email
+    * to license@prestashop.com so we can send you a copy immediately.
+    *
+    * DISCLAIMER
+    *
+    * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
+    * versions in the future. If you wish to customize PrestaShop for your
+    * needs please refer to https://devdocs.prestashop.com/ for more information.
+    *
+    * @author    PrestaShop SA and Contributors <contact@prestashop.com>
+    * @copyright Since 2007 PrestaShop SA and Contributors
+    * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
+
+    *}
+    
 {extends file='checkout/_partials/steps/checkout-step.tpl'}
 
 {block name='step_content'}
 
   {hook h='displayPaymentTop'}
-  <p>ธนาคาร 022-222-2222 มหาวิทยาลัยขอนแก่น</p>
-  <p>พร้อทเพย์ 099-999-9999 มหาวิทยาลัยขอนแก่น</p>
-  <p>คิวอาร์โค้ด 0448447561 มหาวิทยาลัยขอนแก่น</p>
-  <div class="form-group">
-    <label for="slipFile" class="col-sm-3 col-form-label">{l s='เลือกไฟล์สลิป:' d='Shop.Theme.Actions'}</label><br>
-    <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
-  </div>
-  
+
   {* used by javascript to correctly handle cart updates when we are on payment step (eg vouchers added) *}
   <div style="display:none" class="js-cart-payment-step-refresh"></div>
 
@@ -163,5 +182,7 @@
 
   {hook h='displayPaymentByBinaries'}
 
-{/block}
+  <div class="container">
+    <h1>{l s='Payment Page' d='Shop.Theme.Actions'}</h1>
 
+    <form id="paymentForm"
