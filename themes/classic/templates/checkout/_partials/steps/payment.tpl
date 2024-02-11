@@ -205,8 +205,6 @@
   </div>
   
   {hook h='displayPaymentByBinaries'}
-<<<<<<< Updated upstream
-=======
 
 <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 <script>
@@ -251,5 +249,4 @@
 
 
 
->>>>>>> Stashed changes
 {/block}
