@@ -1,0 +1,22 @@
+{
+  "name": "prestashop_g5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kazetaw/prestashop_g5.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kazetaw/prestashop_g5/issues"
+  },
+  "homepage": "https://github.com/kazetaw/prestashop_g5#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.41.2",
+    "@types/node": "^20.11.17"
+  }
+}

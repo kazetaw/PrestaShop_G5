@@ -10,6 +10,7 @@
     <label for="slipFile" class="col-sm-3 col-form-label">{l s='เลือกไฟล์สลิป:' d='Shop.Theme.Actions'}</label><br>
     <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
   </div>
+  
   {* used by javascript to correctly handle cart updates when we are on payment step (eg vouchers added) *}
   <div style="display:none" class="js-cart-payment-step-refresh"></div>
 
