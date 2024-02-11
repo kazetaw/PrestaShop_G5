@@ -23,7 +23,73 @@
   * @copyright Since 2007 PrestaShop SA and Contributors
   * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
   *}
-  
+
+{literal}
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.1"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('uploadForm');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const fileInput = document.getElementById('slipFile');
+        const file = fileInput.files[0];
+        if (!file) {
+            alert('กรุณาเลือกไฟล์ก่อน!');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = new Image();
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                if (!isImageMostlyWhite(imageData)) {
+                    // Image passed the white space check, now use Tesseract.js for OCR
+                    performOCR(file);
+                } else {
+                    alert('The image seems to be blank or does not contain enough text.');
+                }
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
+});
+
+function isImageMostlyWhite(imageData) {
+    let whitePixels = 0;
+    for (let i = 0; i < imageData.data.length; i += 4) {
+        if (imageData.data[i] > 200 && imageData.data[i+1] > 200 && imageData.data[i+2] > 200) whitePixels++;
+    }
+    return whitePixels > (imageData.data.length / 4) * 0.9; // Adjust threshold as needed
+}
+
+function performOCR(file) {
+    Tesseract.recognize(
+        file,
+        'tha', // Or 'eng' for English
+        { logger: m => console.log(m) }
+    ).then(({ data: { text } }) => {
+        if (text.trim().length > 0) {
+            // window.location.href = 'http://localhost:8080/upload_script.php'; // Success
+            aleat('สำเร็จ');
+        } else {
+            alert('ไม่พบข้อความภาษาไทยในไฟล์, กรุณาอัพโหลดไฟล์ที่ถูกต้อง');
+        }
+    }).catch(error => {
+        console.error(error);
+        alert('เกิดข้อผิดพลาดในการประมวลผลภาพ');
+    });
+}
+</script>
+{/literal}
+
  {block name='cart_detailed_actions'}
   <div class="checkout cart-detailed-actions js-cart-detailed-actions card-block">
     {if $cart.minimalPurchaseRequired}
@@ -140,7 +206,7 @@
         attachmentModal._element.addEventListener('hidden.bs.modal', function () {
         // เพิ่มโค้ดที่ต้องการทำหลังจาก Modal ถูกปิด
       });
-    });
+
   </script>
   <script>
     function validateFile() {
