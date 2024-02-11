@@ -136,6 +136,7 @@
     <div class="ps-shown-by-js">
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
         {l s='อัพโหลดสลิป' d='Shop.Theme.Checkout'}
+        {hook h='displayExpressCheckout'}
       </button>
       {if $show_final_summary}
         <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
@@ -160,51 +161,72 @@
   </div>
   
   {hook h='displayPaymentByBinaries'}
-<<<<<<< Updated upstream
-=======
 
-<script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
-<script>
-  document.getElementById('slipFile').addEventListener('change', function() {
+ <script>
+document.getElementById('slipFile').addEventListener('change', function() {
     var file = this.files[0];
     if (file) {
-      var fileName = file.name;
-      var fileType = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
-      if (fileType === 'jpg' || fileType === 'png') {
-        var reader = new FileReader();
-        reader.onload = function(event) {
-          var img = new Image();
-          img.onload = function() {
-            var canvas = document.createElement('canvas');
-            var context = canvas.getContext('2d');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            context.drawImage(img, 0, 0);
-            var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-            
-            // ใช้ jsQR เพื่อแยก QR code ออกมา
-            var code = jsQR(imageData.data, imageData.width, imageData.height);
-            
-            if (code) {
-              // กระทำเพิ่มเติมเมื่อพบ QR code
-            } else {
-              alert('ไม่ใช่สลิป กรุณาอัพโหลดใหม่อีกครั้ง');
-              document.getElementById('slipFile').value = "";
-              // กระทำเพิ่มเติมเมื่อไม่พบ QR code
-            }
-          };
-          img.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert("ไฟล์ที่เลือกต้องเป็นรูปภาพเท่านั้น (.jpg หรือ .png)");
-        document.getElementById('slipFile').value = "";
-      }
+        var fileName = file.name;
+        var fileType = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
+        if (fileType === 'jpg' || fileType === 'png') {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var img = new Image();
+                img.onload = function() {
+                    var canvas = document.createElement('canvas');
+                    var context = canvas.getContext('2d');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    context.drawImage(img, 0, 0);
+                    var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+                    var hasText = containsText(imageData);
+                    if (hasText) {
+                        alert('ไฟล์ภาพมีตัวอักษร');
+                    } else {
+                        // ตรวจสอบว่าเป็นสลิปการโอนเงินหรือไม่
+                        var isTransferSlip = isSlip(imageData);
+                        if (isTransferSlip) {
+                            alert('ไฟล์ภาพเป็นสลิปการโอนเงิน');
+                        } else {
+                            alert('ไฟล์ภาพไม่เป็นสลิปการโอนเงิน');
+                        }
+                    }
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert("ไฟล์ที่เลือกต้องเป็นรูปภาพเท่านั้น (.jpg หรือ .png)");
+            document.getElementById('slipFile').value = "";
+        }
     }
-  });
+});
+
+function containsText(imageData) {
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+    canvas.width = imageData.width;
+    canvas.height = imageData.height;
+    context.putImageData(imageData, 0, 0);
+    var text = context.getImageData(0, 0, canvas.width, canvas.height);
+    var isEmpty = true;
+    for (var i = 0; i < text.data.length; i += 4) {
+        if (text.data[i] !== 255) {
+            isEmpty = false;
+            break;
+        }
+    }
+    return isEmpty;
+}
+
+function isSlip(imageData) {
+    // ทำการตรวจสอบลักษณะของสลิปการโอนเงิน ตามลักษณะที่เฉพาะเจาะจง
+    // คุณอาจต้องปรับเปลี่ยนเงื่อนไขตรวจสอบตามลักษณะของสลิปที่คุณต้องการ
+    // เช่น ตรวจสอบข้อความที่อาจมีอยู่บนสลิป หรือลักษณะอื่น ๆ ที่เฉพาะเจาะจง
+    // สำหรับตัวอย่างนี้ เราจะให้มันสมมติว่าถ้ามีตัวอักษรในภาพแล้วเป็นสลิป
+    return !containsText(imageData);
+}
 </script>
 
 
-
->>>>>>> Stashed changes
 {/block}

@@ -136,6 +136,7 @@
     <div class="ps-shown-by-js">
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
         {l s='อัพโหลดสลิป' d='Shop.Theme.Checkout'}
+        {hook h='displayExpressCheckout'}
       </button>
       {if $show_final_summary}
         <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
@@ -160,8 +161,6 @@
   </div>
   
   {hook h='displayPaymentByBinaries'}
-<<<<<<< Updated upstream
-=======
 
 <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 <script>
@@ -186,10 +185,10 @@
             var code = jsQR(imageData.data, imageData.width, imageData.height);
             
             if (code) {
+              alert('พบ QR code ในรูปภาพ');
               // กระทำเพิ่มเติมเมื่อพบ QR code
             } else {
-              alert('ไม่ใช่สลิป กรุณาอัพโหลดใหม่อีกครั้ง');
-              document.getElementById('slipFile').value = "";
+              alert('ไม่พบ QR code ในรูปภาพ');
               // กระทำเพิ่มเติมเมื่อไม่พบ QR code
             }
           };
@@ -206,5 +205,4 @@
 
 
 
->>>>>>> Stashed changes
 {/block}

@@ -8,7 +8,7 @@
     <label for="slipFile" class="col-sm-3 col-form-label">{l s='เลือกไฟล์สลิป:' d='Shop.Theme.Actions'}</label><br>
     <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
   </div>
-  
+
   {* used by javascript to correctly handle cart updates when we are on payment step (eg vouchers added) *}
   <div style="display:none" class="js-cart-payment-step-refresh"></div>
 
@@ -136,6 +136,7 @@
     <div class="ps-shown-by-js">
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
         {l s='อัพโหลดสลิป' d='Shop.Theme.Checkout'}
+        {hook h='displayExpressCheckout'}
       </button>
       {if $show_final_summary}
         <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
@@ -158,53 +159,70 @@
       {/if}
     </div>
   </div>
-  
-  {hook h='displayPaymentByBinaries'}
-<<<<<<< Updated upstream
-=======
 
-<script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+  {hook h='displayPaymentByBinaries'}
+
+{/block}
+
 <script>
-  document.getElementById('slipFile').addEventListener('change', function() {
-    var file = this.files[0];
-    if (file) {
-      var fileName = file.name;
-      var fileType = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
-      if (fileType === 'jpg' || fileType === 'png') {
-        var reader = new FileReader();
-        reader.onload = function(event) {
-          var img = new Image();
-          img.onload = function() {
-            var canvas = document.createElement('canvas');
-            var context = canvas.getContext('2d');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            context.drawImage(img, 0, 0);
-            var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-            
-            // ใช้ jsQR เพื่อแยก QR code ออกมา
-            var code = jsQR(imageData.data, imageData.width, imageData.height);
-            
-            if (code) {
-              // กระทำเพิ่มเติมเมื่อพบ QR code
-            } else {
-              alert('ไม่ใช่สลิป กรุณาอัพโหลดใหม่อีกครั้ง');
-              document.getElementById('slipFile').value = "";
-              // กระทำเพิ่มเติมเมื่อไม่พบ QR code
-            }
-          };
-          img.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert("ไฟล์ที่เลือกต้องเป็นรูปภาพเท่านั้น (.jpg หรือ .png)");
-        document.getElementById('slipFile').value = "";
-      }
+document.addEventListener("DOMContentLoaded", function() {
+  // เลือกอิลิเมนต์ของอินพุตไฟล์
+  var fileInput = document.getElementById('slipFile');
+
+  // เมื่อมีการเปลี่ยนแปลงในไฟล์ที่เลือก
+  fileInput.addEventListener('change', function() {
+    var file = fileInput.files[0];
+    var fileType = file.type;
+    var validExtensions = ['image/jpeg', 'image/png'];
+    
+    // ตรวจสอบว่าไฟล์เป็นรูปภาพและมีนามสกุล .jpg หรือ .png
+    if (validExtensions.includes(fileType)) {
+      // ตรวจสอบว่ารูปภาพไม่มีตัวอักษร
+      checkImageForText(file);
+    } else {
+      // แจ้งเตือนหากไฟล์ที่เลือกไม่ใช่รูปภาพที่รองรับ
+      alert('กรุณาเลือกไฟล์รูปภาพที่มีนามสกุล .jpg หรือ .png');
+      // ล้างค่าไฟล์ที่เลือก
+      fileInput.value = '';
     }
   });
+
+  // ฟังก์ชันสำหรับตรวจสอบว่ารูปภาพมีตัวอักษรหรือไม่
+  function checkImageForText(imageFile) {
+    // สร้างอ็อบเจกต์ FileReader
+    var reader = new FileReader();
+
+    // เมื่อการอ่านไฟล์เสร็จสิ้น
+    reader.onload = function(e) {
+      // สร้างอิลิเมนต์ <img> เพื่อใช้ในการตรวจสอบรูปภาพ
+      var img = document.createElement('img');
+      img.src = e.target.result;
+
+      // กำหนดฟังก์ชันเมื่อรูปภาพโหลดเสร็จ
+      img.onload = function() {
+        // ใช้ Tesseract.js เพื่อตรวจสอบตัวอักษรในรูปภาพ
+        Tesseract.recognize(
+          img,
+          'eng',
+          { logger: m => console.log(m) } // สามารถเปลี่ยนเป็น logger: false เพื่อไม่แสดงผลลัพธ์ในคอนโซล
+        ).then(function(result) {
+          // ถ้าไม่พบตัวอักษรในรูปภาพ
+          if (result.text.length === 0) {
+            // รูปภาพถูกต้อง สามารถอัพโหลดได้
+            alert('ไฟล์รูปภาพถูกต้อง สามารถอัพโหลดได้');
+          } else {
+            // มีตัวอักษรในรูปภาพ ไม่สามารถอัพโหลดได้
+            alert('รูปภาพมีตัวอักษร กรุณาเลือกรูปภาพที่ไม่มีตัวอักษร');
+            // ล้างค่าไฟล์ที่เลือก
+            fileInput.value = '';
+          }
+        });
+      };
+    };
+
+    // อ่านไฟล์รูปภาพเพื่อใช้ในการตรวจสอบ
+    reader.readAsDataURL(imageFile);
+  }
+});
 </script>
-
-
-
->>>>>>> Stashed changes
 {/block}

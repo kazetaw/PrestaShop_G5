@@ -136,6 +136,7 @@
     <div class="ps-shown-by-js">
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
         {l s='อัพโหลดสลิป' d='Shop.Theme.Checkout'}
+        {hook h='displayExpressCheckout'}
       </button>
       {if $show_final_summary}
         <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
@@ -159,52 +160,41 @@
     </div>
   </div>
   
+
   {hook h='displayPaymentByBinaries'}
-<<<<<<< Updated upstream
-=======
 
-<script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
-<script>
-  document.getElementById('slipFile').addEventListener('change', function() {
-    var file = this.files[0];
-    if (file) {
-      var fileName = file.name;
-      var fileType = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
-      if (fileType === 'jpg' || fileType === 'png') {
-        var reader = new FileReader();
-        reader.onload = function(event) {
-          var img = new Image();
-          img.onload = function() {
-            var canvas = document.createElement('canvas');
-            var context = canvas.getContext('2d');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            context.drawImage(img, 0, 0);
-            var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-            
-            // ใช้ jsQR เพื่อแยก QR code ออกมา
-            var code = jsQR(imageData.data, imageData.width, imageData.height);
-            
-            if (code) {
-              // กระทำเพิ่มเติมเมื่อพบ QR code
-            } else {
-              alert('ไม่ใช่สลิป กรุณาอัพโหลดใหม่อีกครั้ง');
-              document.getElementById('slipFile').value = "";
-              // กระทำเพิ่มเติมเมื่อไม่พบ QR code
-            }
-          };
-          img.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert("ไฟล์ที่เลือกต้องเป็นรูปภาพเท่านั้น (.jpg หรือ .png)");
-        document.getElementById('slipFile').value = "";
-      }
-    }
-  });
-</script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const fileInput = document.getElementById('slipFile');
+      
+      fileInput.addEventListener('change', function() {
+        const file = fileInput.files[0];
+        const allowedExtensions = /(\.jpg|\.png)$/i;
+        const imageType = /^image\//;
 
+        if (!file) {
+          alert('Please select a file.');
+          return;
+        }
 
+        if (!imageType.test(file.type)) {
+          alert('Please upload an image file.');
+          fileInput.value = ''; // Clear the input field
+          return;
+        }
 
->>>>>>> Stashed changes
+        if (!allowedExtensions.exec(file.name)) {
+          alert('Allowed file extensions are .jpg and .png.');
+          fileInput.value = ''; // Clear the input field
+          return;
+        }
+
+        // File meets all criteria, you can proceed with uploading.
+        // You may want to perform additional actions here if needed.
+      });
+    });
+  </script>
+
 {/block}
+
+

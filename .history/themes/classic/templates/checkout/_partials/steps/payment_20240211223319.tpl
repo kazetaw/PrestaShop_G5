@@ -136,6 +136,7 @@
     <div class="ps-shown-by-js">
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
         {l s='อัพโหลดสลิป' d='Shop.Theme.Checkout'}
+        {hook h='displayExpressCheckout'}
       </button>
       {if $show_final_summary}
         <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
@@ -160,51 +161,100 @@
   </div>
   
   {hook h='displayPaymentByBinaries'}
-<<<<<<< Updated upstream
-=======
 
-<script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
-<script>
-  document.getElementById('slipFile').addEventListener('change', function() {
-    var file = this.files[0];
-    if (file) {
-      var fileName = file.name;
-      var fileType = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
-      if (fileType === 'jpg' || fileType === 'png') {
-        var reader = new FileReader();
-        reader.onload = function(event) {
-          var img = new Image();
-          img.onload = function() {
-            var canvas = document.createElement('canvas');
-            var context = canvas.getContext('2d');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            context.drawImage(img, 0, 0);
-            var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-            
-            // ใช้ jsQR เพื่อแยก QR code ออกมา
-            var code = jsQR(imageData.data, imageData.width, imageData.height);
-            
-            if (code) {
-              // กระทำเพิ่มเติมเมื่อพบ QR code
-            } else {
-              alert('ไม่ใช่สลิป กรุณาอัพโหลดใหม่อีกครั้ง');
-              document.getElementById('slipFile').value = "";
-              // กระทำเพิ่มเติมเมื่อไม่พบ QR code
-            }
-          };
-          img.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert("ไฟล์ที่เลือกต้องเป็นรูปภาพเท่านั้น (.jpg หรือ .png)");
-        document.getElementById('slipFile').value = "";
+  <script>
+    // เมื่อมีการเลือกไฟล์
+    document.getElementById('slipFile').addEventListener('change', function() {
+        // รับไฟล์ที่ถูกเลือก
+        var file = this.files[0];
+        // ตรวจสอบว่ามีไฟล์ที่ถูกเลือกหรือไม่
+        if (file) {
+            // ตรวจสอบนามสกุลของไฟล์
+            var fileName = file.name;
+            var fileType = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
+            // ตรวจสอบว่าเป็นไฟล์รูป (.jpg หรือ .png) หรือไม่
+            if (fileType === 'jpg' || fileType === 'png') {
+                // สร้างฟังก์ชันสำหรับตรวจสอบไฟล์ .jpg ว่ามีตัวอักษรหรือไม่
+function checkForText(file) {
+  // สร้างอ็อบเจ็กต์ FileReader เพื่ออ่านไฟล์ภาพ
+  var reader = new FileReader();
+
+  // เมื่ออ่านไฟล์เสร็จสิ้น
+  reader.onload = function(event) {
+    // สร้างฟังก์ชันสำหรับตรวจสอบตัวอักษรในภาพ
+    function containsText(imageData) {
+      // สร้าง Canvas element เพื่อวาดภาพ
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
+      canvas.width = imageData.width;
+      canvas.height = imageData.height;
+      context.putImageData(imageData, 0, 0);
+      
+      // ใช้ฟังก์ชัน OCR (Optical Character Recognition) หรือวิธีอื่น ๆ เพื่อตรวจสอบตัวอักษร
+      // เพื่อความง่ายในตัวอย่างนี้ ฉันจะแสดงแค่การตรวจสอบความว่างเปล่าของข้อความในภาพ
+      var text = context.getImageData(0, 0, canvas.width, canvas.height);
+      var isEmpty = true;
+      for (var i = 0; i < text.data.length; i += 4) {
+        // ตรวจสอบค่าของสีแดง (R) เพื่อดูว่าภาพมีตัวอักษรหรือไม่
+        if (text.data[i] !== 255) {
+          isEmpty = false;
+          break;
+        }
       }
+      return isEmpty;
     }
-  });
-</script>
 
+    // สร้างภาพในรูปแบบ ImageData
+    var img = new Image();
+    img.onload = function() {
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      context.drawImage(img, 0, 0);
+      var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
+      // เรียกใช้ฟังก์ชันเพื่อตรวจสอบตัวอักษรในภาพ
+      var hasText = containsText(imageData);
 
->>>>>>> Stashed changes
+      // ตรวจสอบว่าภาพมีตัวอักษรหรือไม่
+      if (hasText) {
+        alert('ไฟล์ภาพมีตัวอักษร');
+      } else {
+        alert('ไฟล์ภาพไม่มีตัวอักษร');
+        // กระทำเพิ่มเติมเมื่อไม่มีตัวอักษร
+      }
+    };
+    img.src = event.target.result;
+  };
+
+  // อ่านไฟล์ภาพเมื่อไฟล์ถูกเลือก
+  reader.readAsDataURL(file);
+}
+
+// สร้างอินพุตของไฟล์
+var fileInput = document.createElement('input');
+fileInput.type = 'file';
+
+// เพิ่มการฟังก์ชันสำหรับการเลือกไฟล์
+fileInput.addEventListener('change', function(event) {
+  var file = event.target.files[0];
+  if (file) {
+    // เรียกใช้ฟังก์ชันเพื่อตรวจสอบไฟล์
+    checkForText(file);
+  }
+});
+                };
+                reader.readAsDataURL(file);
+            } else {
+                // ถ้าไม่ใช่ไฟล์รูป .jpg หรือ .png
+                alert("ไฟล์ที่เลือกต้องเป็นรูปภาพเท่านั้น (.jpg หรือ .png)");
+                // เคลียร์ input file
+                document.getElementById('slipFile').value = "";
+            }
+        }
+    });
+  </script>
+  
+
 {/block}

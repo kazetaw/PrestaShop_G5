@@ -134,8 +134,9 @@
 
   <div id="payment-confirmation" class="js-payment-confirmation">
     <div class="ps-shown-by-js">
-      <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
+      <button type="submit" onclick="return validateFile();" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
         {l s='อัพโหลดสลิป' d='Shop.Theme.Checkout'}
+        {hook h='displayExpressCheckout'}
       </button>
       {if $show_final_summary}
         <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
@@ -159,52 +160,54 @@
     </div>
   </div>
   
-  {hook h='displayPaymentByBinaries'}
-<<<<<<< Updated upstream
-=======
 
-<script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+  {hook h='displayPaymentByBinaries'}
+
+{/block}
+
 <script>
-  document.getElementById('slipFile').addEventListener('change', function() {
-    var file = this.files[0];
-    if (file) {
-      var fileName = file.name;
-      var fileType = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
-      if (fileType === 'jpg' || fileType === 'png') {
-        var reader = new FileReader();
-        reader.onload = function(event) {
-          var img = new Image();
-          img.onload = function() {
-            var canvas = document.createElement('canvas');
-            var context = canvas.getContext('2d');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            context.drawImage(img, 0, 0);
-            var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-            
-            // ใช้ jsQR เพื่อแยก QR code ออกมา
-            var code = jsQR(imageData.data, imageData.width, imageData.height);
-            
-            if (code) {
-              // กระทำเพิ่มเติมเมื่อพบ QR code
-            } else {
-              alert('ไม่ใช่สลิป กรุณาอัพโหลดใหม่อีกครั้ง');
-              document.getElementById('slipFile').value = "";
-              // กระทำเพิ่มเติมเมื่อไม่พบ QR code
-            }
-          };
-          img.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
+    function validateFile() {
+      var fileInput = document.getElementById('slipFile');
+      var fileName = fileInput.value;
+      var ext = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
+
+      // ตรวจสอบว่าไฟล์มีนามสกุล .png หรือ .jpg หรือไม่
+      if (ext == 'png' || ext == 'jpg') {
+        // ตรวจสอบว่าไฟล์มีตัวอักษรหรือไม่
+        var hasText = /[a-zA-Z]/.test(fileName);
+        if (hasText) {
+          return true;  // ไฟล์ถูกต้อง
+        } else {
+          alert('กรุณาเลือกไฟล์ที่มีตัวอักษร');
+          return false;  // ไฟล์ไม่มีตัวอักษร
+        }
       } else {
-        alert("ไฟล์ที่เลือกต้องเป็นรูปภาพเท่านั้น (.jpg หรือ .png)");
-        document.getElementById('slipFile').value = "";
+        alert('กรุณาเลือกไฟล์ที่มีนามสกุล .png หรือ .jpg');
+        return false;  // ไฟล์ไม่มีนามสกุลที่ถูกต้อง
       }
     }
-  });
+    function showQRCode() {
+      // แสดง QR Code เมื่อคลิกที่ "QR Code"
+      document.getElementById('qrCodeDetails').style.display = 'block';
+      // ซ่อนข้อมูลธนาคาร
+      document.getElementById('promtpayDetails').style.display = 'none';
+
+      document.getElementById('bankDetails').style.display = 'none';
+    }
+  
+    function showBankDetails() {
+      // แสดงข้อมูลธนาคารเมื่อคลิกที่ "ธนาคาร"
+      document.getElementById('bankDetails').style.display = 'block';
+      // ซ่อน QR Code
+      document.getElementById('qrCodeDetails').style.display = 'none';
+      //ซ่อน Promtpay
+      document.getElementById('promtpayDetails').style.display = 'none';
+    }
+    function showPromptpayDetails() {
+      // แสดงข้อมูลพร้อมเพย์เมื่อคลิกที่ "Promtpay"
+      document.getElementById('promtpayDetails').style.display = 'block';
+      // ซ่อน QR Code
+      document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
+      // ซ่อนข้อมูลธนาคาร
+    }
 </script>
-
-
-
->>>>>>> Stashed changes
-{/block}

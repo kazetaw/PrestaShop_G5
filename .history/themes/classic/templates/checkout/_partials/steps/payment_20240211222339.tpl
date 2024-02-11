@@ -136,6 +136,7 @@
     <div class="ps-shown-by-js">
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
         {l s='อัพโหลดสลิป' d='Shop.Theme.Checkout'}
+        {hook h='displayExpressCheckout'}
       </button>
       {if $show_final_summary}
         <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
@@ -160,51 +161,63 @@
   </div>
   
   {hook h='displayPaymentByBinaries'}
-<<<<<<< Updated upstream
-=======
 
-<script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
-<script>
-  document.getElementById('slipFile').addEventListener('change', function() {
-    var file = this.files[0];
-    if (file) {
-      var fileName = file.name;
-      var fileType = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
-      if (fileType === 'jpg' || fileType === 'png') {
-        var reader = new FileReader();
-        reader.onload = function(event) {
-          var img = new Image();
-          img.onload = function() {
-            var canvas = document.createElement('canvas');
-            var context = canvas.getContext('2d');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            context.drawImage(img, 0, 0);
-            var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-            
-            // ใช้ jsQR เพื่อแยก QR code ออกมา
-            var code = jsQR(imageData.data, imageData.width, imageData.height);
-            
-            if (code) {
-              // กระทำเพิ่มเติมเมื่อพบ QR code
+  <script>
+    // เมื่อมีการเลือกไฟล์
+    document.getElementById('slipFile').addEventListener('change', function() {
+        // รับไฟล์ที่ถูกเลือก
+        var file = this.files[0];
+        // ตรวจสอบว่ามีไฟล์ที่ถูกเลือกหรือไม่
+        if (file) {
+            // ตรวจสอบนามสกุลของไฟล์
+            var fileName = file.name;
+            var fileType = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
+            // ตรวจสอบว่าเป็นไฟล์รูป (.jpg หรือ .png) หรือไม่
+            if (fileType === 'jpg' || fileType === 'png') {
+                // ตรวจสอบว่ามีตัวอักษรในไฟล์หรือไม่
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var image = new Image();
+                    image.src = e.target.result;
+                    image.onload = function() {
+                        // ตรวจสอบว่ามีตัวอักษรในรูปหรือไม่
+                        var canvas = document.createElement("canvas");
+                        var ctx = canvas.getContext("2d");
+                        ctx.drawImage(image, 0, 0);
+                        var imageData = ctx.getImageData(0, 0, image.width, image.height);
+                        var pixels = imageData.data;
+                        var hasText = true;
+                        for (var i = 0; i < pixels.length; i += 4) {
+                            var r = pixels[i];
+                            var g = pixels[i + 1];
+                            var b = pixels[i + 2];
+                            // ตรวจสอบว่าพิกเซลใดๆมีค่าไม่ใกล้เคียงกับสีขาว (255, 255, 255)
+                            if (r !== 255 || g !== 255 || b !== 255) {
+                                hasText = false;
+                                break;
+                            }
+                        }
+                        if (hasText) {
+                            // ถ้าพบตัวอักษรในรูป
+                            // ไม่ต้องทำอะไรเพิ่มเติมเพราะเราต้องการให้อัพโหลดไฟล์ที่มีตัวอักษร
+                        } else {
+                             // ถ้าพบไม่ตัวอักษรในรูป
+                            alert("ไฟล์ที่เลือกไม่มีตัวอักษร กรุณาเลือกรูปที่มีตัวอักษร");
+                            // เคลียร์ input file
+                            document.getElementById('slipFile').value = "";
+                        }
+                    };
+                };
+                reader.readAsDataURL(file);
             } else {
-              alert('ไม่ใช่สลิป กรุณาอัพโหลดใหม่อีกครั้ง');
-              document.getElementById('slipFile').value = "";
-              // กระทำเพิ่มเติมเมื่อไม่พบ QR code
+                // ถ้าไม่ใช่ไฟล์รูป .jpg หรือ .png
+                alert("ไฟล์ที่เลือกต้องเป็นรูปภาพเท่านั้น (.jpg หรือ .png)");
+                // เคลียร์ input file
+                document.getElementById('slipFile').value = "";
             }
-          };
-          img.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert("ไฟล์ที่เลือกต้องเป็นรูปภาพเท่านั้น (.jpg หรือ .png)");
-        document.getElementById('slipFile').value = "";
-      }
-    }
-  });
-</script>
+        }
+    });
+  </script>
+  
 
-
-
->>>>>>> Stashed changes
 {/block}
