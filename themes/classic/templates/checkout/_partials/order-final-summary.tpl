@@ -60,7 +60,8 @@
     <div class="row">
       <div class="col-md-12">
         <h4 class="h4">
-          {l s='How to pay' d='Shop.Theme.Checkout'}
+          {l s='Shipping Method' d='Shop.Theme.Checkout'}
+          <span class="step-edit step-to-delivery js-edit-delivery"><i class="material-icons edit">mode_edit</i> {l s='edit' d='Shop.Theme.Actions'}</span>
         </h4>
 
         <div class="col-md-12 summary-selected-carrier">
@@ -81,6 +82,7 @@
               <span class="carrier-delay">{$selected_delivery_option.delay}</span>
             </div>
             <div class="col-md-2">
+              <span class="carrier-price">{$selected_delivery_option.price}</span>
             </div>
           </div>
         </div>
