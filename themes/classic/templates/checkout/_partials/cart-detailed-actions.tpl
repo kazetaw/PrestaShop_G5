@@ -157,11 +157,11 @@ function performOCR(file) {
             </div>
 
             <div id="CounterServiceDetails" style="display:none;">
-            <p>{l s='กรุณาดาวน์โหลดหลักฐานการชำระเงินและชำระเงินที่เคาน์เตอร์เซอร์วิสทุกสาขา' d='Shop.Theme.Actions'}</p>
+              <p>{l s='กรุณาดาวน์โหลดหลักฐานการชำระเงินและชำระเงินที่เคาน์เตอร์เซอร์วิสทุกสาขา' d='Shop.Theme.Actions'}</p>
             <!-- This link should point to the PDF or file generated for payment. Adjust the href attribute accordingly. -->
             <a href="/path/to/counter_service_payment_slip.pdf" download="{l s='Payment Slip' d='Shop.Theme.Actions'}">{l s='Download Payment Slip' d='Shop.Theme.Actions'}</a>
             </div>
-            
+
           </form>
           <!-- เพิ่มฟอร์มหรือข้อมูลเพิ่มเติมตามที่คุณต้องการ -->
         </div>
@@ -264,8 +264,9 @@ function performOCR(file) {
     document.getElementById('qrCodeDetails').style.display = 'block';
     // ซ่อนข้อมูลธนาคาร
     document.getElementById('promtpayDetails').style.display = 'none';
-
+    
     document.getElementById('bankDetails').style.display = 'none';
+    document.getElementById('CounterServiceDetails').style.display = 'none';
   }
 
   function showBankDetails() {
@@ -275,6 +276,7 @@ function performOCR(file) {
     document.getElementById('qrCodeDetails').style.display = 'none';
     //ซ่อน Promtpay
     document.getElementById('promtpayDetails').style.display = 'none';
+    document.getElementById('CounterServiceDetails').style.display = 'none';
   }
   function showPromptpayDetails() {
     // แสดงข้อมูลพร้อมเพย์เมื่อคลิกที่ "Promtpay"
@@ -282,6 +284,7 @@ function performOCR(file) {
     // ซ่อน QR Code
     document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
     // ซ่อนข้อมูลธนาคาร
+    document.getElementById('CounterServiceDetails').style.display = 'none';
   }
   function showCounterServiceDetails() {
     // Hide other payment details
