@@ -137,20 +137,7 @@
   <div id="payment-confirmation" class="js-payment-confirmation">
     <div class="ps-shown-by-js">
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        {l s='อัพโหลดสลิป' d='Shop.Theme.Checkout'}
-        {hook h='displayExpressCheckout'}
-=======
         {l s='Place order' d='Shop.Theme.Checkout'}
->>>>>>> parent of fd3de49d (add fuction bank and no ask birthdate customer)
-=======
-        {l s='Place order' d='Shop.Theme.Checkout'}
->>>>>>> parent of fd3de49d (add fuction bank and no ask birthdate customer)
-=======
-        {l s='Place order' d='Shop.Theme.Checkout'}
->>>>>>> parent of fd3de49d (add fuction bank and no ask birthdate customer)
       </button>
       {if $show_final_summary}
         <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
@@ -175,6 +162,12 @@
   </div>
 
   {hook h='displayPaymentByBinaries'}
+
+            {block name='order_confirmation_header'}
+              <h3 class="h1 card-title">
+                <i class="material-icons rtl-no-flip done">&#xE876;</i>{l s='ทำการซื้อ Voucher สำเร็จ ขอบคุณที่สนับสนุน!🙏' d='Shop.Theme.Checkout'}
+              </h3>
+            {/block}
 
 {/block}
 

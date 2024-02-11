@@ -137,20 +137,7 @@
   <div id="payment-confirmation" class="js-payment-confirmation">
     <div class="ps-shown-by-js">
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        {l s='อัพโหลดสลิป' d='Shop.Theme.Checkout'}
-        {hook h='displayExpressCheckout'}
-=======
         {l s='Place order' d='Shop.Theme.Checkout'}
->>>>>>> parent of fd3de49d (add fuction bank and no ask birthdate customer)
-=======
-        {l s='Place order' d='Shop.Theme.Checkout'}
->>>>>>> parent of fd3de49d (add fuction bank and no ask birthdate customer)
-=======
-        {l s='Place order' d='Shop.Theme.Checkout'}
->>>>>>> parent of fd3de49d (add fuction bank and no ask birthdate customer)
       </button>
       {if $show_final_summary}
         <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
@@ -175,6 +162,19 @@
   </div>
 
   {hook h='displayPaymentByBinaries'}
+  {if isset($order_confirmation)}
+    <div class="alert alert-success" role="alert">
+      {l s='Your order has been successfully placed. Order number: '}{$order_confirmation.order_number}
+    </div>
+  {/if}
+  <!-- สิ้นสุดโค้ดที่เพิ่มขึ้น -->
+
+  {hook h='displayCheckoutBeforeConfirmation'}
+  
+  {if $show_final_summary}
+    {include file='checkout/_partials/order-final-summary.tpl'}
+  {/if}
+
 
 {/block}
 
