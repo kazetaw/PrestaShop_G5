@@ -139,8 +139,12 @@
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         {l s='อัพโหลดสลิป' d='Shop.Theme.Checkout'}
         {hook h='displayExpressCheckout'}
+=======
+        {l s='Place order' d='Shop.Theme.Checkout'}
+>>>>>>> parent of fd3de49d (add fuction bank and no ask birthdate customer)
 =======
         {l s='Place order' d='Shop.Theme.Checkout'}
 >>>>>>> parent of fd3de49d (add fuction bank and no ask birthdate customer)
