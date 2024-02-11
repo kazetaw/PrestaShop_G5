@@ -3,9 +3,7 @@
 {block name='step_content'}
 
   {hook h='displayPaymentTop'}
-  <p>ธนาคาร 022-222-2222 มหาวิทยาลัยขอนแก่น</p>
-  <p>พร้อทเพย์ 099-999-9999 มหาวิทยาลัยขอนแก่น</p>
-  <p>คิวอาร์โค้ด 0448447561 มหาวิทยาลัยขอนแก่น</p>
+
   <div class="form-group">
     <label for="slipFile" class="col-sm-3 col-form-label">{l s='เลือกไฟล์สลิป:' d='Shop.Theme.Actions'}</label><br>
     <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
@@ -137,7 +135,8 @@
   <div id="payment-confirmation" class="js-payment-confirmation">
     <div class="ps-shown-by-js">
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
-        {l s='Place order' d='Shop.Theme.Checkout'}
+        {l s='อัพโหลดสลิป' d='Shop.Theme.Checkout'}
+        {hook h='displayExpressCheckout'}
       </button>
       {if $show_final_summary}
         <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">

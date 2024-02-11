@@ -62,10 +62,8 @@
                           </div>
                         </div>
                         <div class="col-sm-4 col-xs-12">
-                          <span class="carrier-delay">{$carrier.delay}</span>
                         </div>
                         <div class="col-sm-3 col-xs-12">
-                          <span class="carrier-price">{$carrier.price}</span>
                         </div>
                       </div>
                     </label>
