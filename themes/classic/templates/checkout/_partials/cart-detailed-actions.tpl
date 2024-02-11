@@ -248,5 +248,31 @@ function performOCR(file) {
     }
   });
 </script>
+<script>
+  function showQRCode() {
+    // แสดง QR Code เมื่อคลิกที่ "QR Code"
+    document.getElementById('qrCodeDetails').style.display = 'block';
+    // ซ่อนข้อมูลธนาคาร
+    document.getElementById('promtpayDetails').style.display = 'none';
+
+    document.getElementById('bankDetails').style.display = 'none';
+  }
+
+  function showBankDetails() {
+    // แสดงข้อมูลธนาคารเมื่อคลิกที่ "ธนาคาร"
+    document.getElementById('bankDetails').style.display = 'block';
+    // ซ่อน QR Code
+    document.getElementById('qrCodeDetails').style.display = 'none';
+    //ซ่อน Promtpay
+    document.getElementById('promtpayDetails').style.display = 'none';
+  }
+  function showPromptpayDetails() {
+    // แสดงข้อมูลพร้อมเพย์เมื่อคลิกที่ "Promtpay"
+    document.getElementById('promtpayDetails').style.display = 'block';
+    // ซ่อน QR Code
+    document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
+    // ซ่อนข้อมูลธนาคาร
+  }
+</script>
 
  {/block}
