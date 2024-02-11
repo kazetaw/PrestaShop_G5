@@ -52,28 +52,6 @@
     {/if}
   </div>
   <!-- Modal สำหรับอัพโหลดสลิป -->
-  <div class="modal fade" id="attachmentModal" tabindex="-1" role="dialog" aria-labelledby="attachmentModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="attachmentModalLabel">{l s='อัพโหลดสลิปการโอน' d='Shop.Theme.Actions'}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- เพิ่มฟอร์มอัพโหลดสลิป -->
-          <form action="/upload_script.php" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-              <label for="slipFile">{l s='เลือกไฟล์สลิป:' d='Shop.Theme.Actions'}</label>
-              <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".pdf, .jpg, .png" required>
-            </div>
-            <button type="submit" class="btn btn-primary">{l s='อัพโหลด' d='Shop.Theme.Actions'}</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
  
   <!-- Modal สำหรับจ่ายเงิน -->
   <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
@@ -87,9 +65,9 @@
         </div>
         <div class="modal-body">
           <!-- เพิ่มฟอร์มหรือข้อมูลที่เกี่ยวข้องกับการจ่ายเงินที่นี่ -->
-          <p>{l s='Choose your payment method and follow the instructions to complete the payment.' d='Shop.Theme.Actions'}</p>
+          <p>{l s='ขั้นตอนการจ่ายเงิน' d='Shop.Theme.Actions'}</p>
           <form action="/action_page.php">
-            <p>Please select your favorite Web language:</p>
+            <p>เลือกช่องทางการชำระเงิน:</p>
             <input type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
             <label for="html" style="display: inline-block; margin-right: 15px;">ธนาคาร</label>
             <input type="radio" id="css" name="fav_language" value="QR" onclick="showQRCode()" style="display: inline-block; margin-right: 5px;">
@@ -112,9 +90,20 @@
           <!-- เพิ่มฟอร์มหรือข้อมูลเพิ่มเติมตามที่คุณต้องการ -->
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#attachmentModal">
-            {l s='แนบหลักฐานการโอน' d='Shop.Theme.Actions'}
-          </button>          <!-- เพิ่มปุ่มหรือลิงค์ที่ต้องการให้ผู้ใช้ทำการจ่ายเงิน -->
+     <!-- เพิ่มปุ่มหรือลิงค์ที่ต้องการให้ผู้ใช้ทำการจ่ายเงิน -->
+          <div class="modal-body">
+            <!-- เพิ่มฟอร์มอัพโหลดสลิป -->
+            <form action="/upload_script.php" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="slipFile" class="col-sm-3 col-form-label">{l s='เลือกไฟล์สลิป:' d='Shop.Theme.Actions'}</label><br>
+                <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".pdf, .jpg, .png" required>
+              </div>
+              <button type="submit" class="btn btn-primary">{l s='อัพโหลด' d='Shop.Theme.Actions'}</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
         </div>
       </div>
     </div>
@@ -144,9 +133,9 @@
         // สำหรับการจำลอง ให้เรียกใช้ handleUploadSuccess() หลังจากเสร็จสิ้นการอัพโหลด
         setTimeout(handleUploadSuccess, 2000);
       });
-  
+   
       // เพิ่มโค้ดที่จะทำงานเมื่อ Modal ถูกปิด
-      attachmentModal._element.addEventListener('hidden.bs.modal', function () {
+        attachmentModal._element.addEventListener('hidden.bs.modal', function () {
         // เพิ่มโค้ดที่ต้องการทำหลังจาก Modal ถูกปิด
       });
     });
