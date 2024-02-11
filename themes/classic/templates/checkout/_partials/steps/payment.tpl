@@ -35,11 +35,15 @@
                 name="payment-option"
                 type="radio"
                 required
+                
                 {if ($selected_payment_option == $option.id || $is_free) || ($payment_options|@count === 1 && $module_options|@count === 1)} checked {/if}
               >
+                
               <span></span>
             </span>
+            <br>
             {* This is the way an option should be selected when Javascript is disabled *}
+            
             <form method="GET" class="ps-hidden-by-js">
               {if $option.id === $selected_payment_option}
                 {l s='Selected' d='Shop.Theme.Checkout'}
@@ -59,15 +63,56 @@
 
           </div>
         </div>
-
-        {if $option.additionalInformation}
-          <div
-            id="{$option.id}-additional-information"
-            class="js-additional-information definition-list additional-information{if $option.id != $selected_payment_option} ps-hidden {/if}"
-          >
-            {$option.additionalInformation nofilter}
+        <!-- เพิ่มฟอร์มหรือข้อมูลที่เกี่ยวข้องกับการจ่ายเงินที่นี่ -->
+          <p>เลือกช่องทางการชำระเงิน:</p>
+          <input type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
+          <label for="html" style="display: inline-block; margin-right: 15px;">ธนาคาร</label>
+          <input type="radio" id="css" name="fav_language" value="QR" onclick="showQRCode()" style="display: inline-block; margin-right: 5px;">
+          <label for="css" style="display: inline-block; margin-right: 15px;">QR Code</label>
+          <input type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptpayDetails()" style="display: inline-block;">
+          <label for="javascript" style="display: inline-block;">Promtpay</label>
+          <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
+          <div id="bankDetails" style="display:none;">
+            <p>{l s='Bank details: Kbank 0448447561 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
           </div>
-        {/if}
+          <!-- แสดงข้อมูลของ QR Code เมื่อคลิกที่ "QR Code" -->
+          <div id="qrCodeDetails" style="display:none; text-align: center;">
+            <img src="https://th.bing.com/th/id/OIP.HHacbpUBSuYqZfXIWFn-IQHaHa?rs=1&pid=ImgDetMain" alt="QR Code Logo" style="width: 100px; border: 1px solid #ccc; padding: 5px;">
+          </div>
+          <!-- แสดงข้อมูลของพร้อมเพย์มื่อคลิกที่ "Promtpay" -->
+          <div id="promtpayDetails" style="display:none;">
+            <p>{l s='Promtpay: 0221115554 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
+          </div>
+        </form>
+        <!-- เพิ่มฟอร์มหรือข้อมูลเพิ่มเติมตามที่คุณต้องการ -->
+      </div>
+    <script>
+      function showQRCode() {
+        // แสดง QR Code เมื่อคลิกที่ "QR Code"
+        document.getElementById('qrCodeDetails').style.display = 'block';
+        // ซ่อนข้อมูลธนาคาร
+        document.getElementById('promtpayDetails').style.display = 'none';
+  
+        document.getElementById('bankDetails').style.display = 'none';
+      }
+    
+      function showBankDetails() {
+        // แสดงข้อมูลธนาคารเมื่อคลิกที่ "ธนาคาร"
+        document.getElementById('bankDetails').style.display = 'block';
+        // ซ่อน QR Code
+        document.getElementById('qrCodeDetails').style.display = 'none';
+        //ซ่อน Promtpay
+        document.getElementById('promtpayDetails').style.display = 'none';
+      }
+      function showPromptpayDetails() {
+        // แสดงข้อมูลพร้อมเพย์เมื่อคลิกที่ "Promtpay"
+        document.getElementById('promtpayDetails').style.display = 'block';
+        // ซ่อน QR Code
+        document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
+        // ซ่อนข้อมูลธนาคาร
+      }
+    </script>
+        
 
         <div
           id="pay-with-{$option.id}-form"
