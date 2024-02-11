@@ -38,13 +38,10 @@
       {$title}
       <span class="step-edit text-muted"><i class="material-icons edit">mode_edit</i> {l s='Edit' d='Shop.Theme.Actions'}</span>
     </h1>
-
     <div class="content">
-      <p>ธนาคาร 022-222-2222 มหาวิทยาลัยขอนแก่น</p>
-      <p>พร้อทเพย์ 099-999-9999 มหาวิทยาลัยขอนแก่น</p>
-      <p>คิวอาร์โค้ด 0448447561 มหาวิทยาลัยขอนแก่น</p>
       
-      {block name='step_content'}DUMMY STEP CONTENT{/block}
+      {block name='step_content'}DUMMY STEP CONTENT
+      {/block}
     </div>
   </section>
 {/block}
