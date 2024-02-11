@@ -36,4 +36,4 @@ test('test', async ({ page }) => {
   await page.getByLabel('I agree to the terms of').check();
   await page.getByRole('button', { name: 'Place order' }).click();
   await page.getByText('Vocher 500 ฿500.00 1 ฿').click();
-});
+})*/

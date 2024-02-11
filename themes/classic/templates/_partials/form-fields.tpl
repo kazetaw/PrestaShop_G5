@@ -109,13 +109,46 @@
           {/if}
         {/block}
 
-      
+      {elseif $field.type === 'birthday'}
+
+        {block name='form_field_item_birthday'}
+          <div class="js-parent-focus">
+            {html_select_date
+            field_order=DMY
+            time={$field.value|default}
+            field_array={$field.name}
+            prefix=false
+            reverse_years=true
+            field_separator='<br>'
+            day_extra='class="form-control form-control-select"'
+            month_extra='class="form-control form-control-select"'
+            year_extra='class="form-control form-control-select"'
+            day_empty={l s='-- day --' d='Shop.Forms.Labels'}
+            month_empty={l s='-- month --' d='Shop.Forms.Labels'}
+            year_empty={l s='-- year --' d='Shop.Forms.Labels'}
+            start_year={'Y'|date}-100 end_year={'Y'|date}
+            }
+          </div>
+        {/block}
 
       {elseif $field.type === 'password'}
 
         {block name='form_field_item_password'}
           <div class="input-group js-parent-focus">
-            
+            <input
+              id="field-{$field.name}"
+              class="form-control js-child-focus js-visible-password"
+              name="{$field.name}"
+              aria-label="{l s='Password input' d='Shop.Forms.Help'}"
+              type="password"
+              {if isset($configuration.password_policy.minimum_length)}data-minlength="{$configuration.password_policy.minimum_length}"{/if}
+              {if isset($configuration.password_policy.maximum_length)}data-maxlength="{$configuration.password_policy.maximum_length}"{/if}
+              {if isset($configuration.password_policy.minimum_score)}data-minscore="{$configuration.password_policy.minimum_score}"{/if}
+              {if $field.autocomplete}autocomplete="{$field.autocomplete}"{/if}
+              value=""
+              pattern=".{literal}{{/literal}5,{literal}}{/literal}"
+              {if $field.required}required{/if}
+            >
             <span class="input-group-btn">
               <button
                 class="btn"
@@ -145,13 +178,16 @@
             {if $field.required}required{/if}
           >
           {if isset($field.availableValues.comment)}
-
+            <span class="form-control-comment">
+              {$field.availableValues.comment}
+            </span>
           {/if}
         {/block}
 
       {/if}
 
       {block name='form_field_errors'}
+        {include file='_partials/form-errors.tpl' errors=$field.errors}
       {/block}
 
     </div>
@@ -159,6 +195,7 @@
     <div class="col-md-3 form-control-comment">
       {block name='form_field_comment'}
         {if (!$field.required && !in_array($field.type, ['radio-buttons', 'checkbox']))}
+         {l s='Optional' d='Shop.Forms.Labels'}
         {/if}
       {/block}
     </div>

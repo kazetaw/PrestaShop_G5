@@ -99,6 +99,7 @@
                 <br><input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
               </div>
               <button type="submit" class="btn btn-primary">{l s='อัพโหลด' d='Shop.Theme.Actions'}</button>
+              {hook h='displayExpressCheckout'}
             </form>
           </div>
         </div>
