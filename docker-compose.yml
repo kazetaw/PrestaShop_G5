@@ -33,6 +33,8 @@ services:
       - ./template:/var/www/html/template
       - ./themes:/var/www/html/themes
       - ./classes:/var/www/html/classes
+      - ./pdf:/var/www/html/pdf
+      - ./controllers:/var/www/html/controllers
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
