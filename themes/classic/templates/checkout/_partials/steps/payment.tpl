@@ -87,43 +87,25 @@
 
           <div id="CounterServiceDetails" style="display:none;">
             <div class="cart-summary-products js-cart-summary-products">
-              <p>1 item</p>
+              <p>{$cart.summary_string}</p>
             
               <p>
-                <a href="#" data-toggle="collapse" data-target="#cart-summary-product-list" class="js-show-details" aria-expanded="true">
-                  show details
-                  <i class="material-icons">expand_less</i>
+                <a href="#" data-toggle="collapse" data-target="#cart-summary-product-list" class="js-show-details">
+                  {l s='show details' d='Shop.Theme.Actions'}
+                  <i class="material-icons">expand_more</i>
                 </a>
               </p>
             
-              
-                <div class="collapse in" id="cart-summary-product-list" aria-expanded="true" style="">
+              {block name='cart_summary_product_list'}
+                <div class="collapse" id="cart-summary-product-list">
                   <ul class="media-list">
-                              <li class="media">
-              <div class="media-left">
-                <a href="http://localhost:8080/en/home/23-vocher-10000.html" title="Vocher 10000">
-                          <picture>
-                                          <img class="media-object" src="http://localhost:8080/28-small_default/vocher-10000.jpg" alt="Vocher 10000" loading="lazy">
-                    </picture>
-                      </a>
-              </div>
-              <div class="media-body">
-                <span class="product-name">
-                    <a href="http://localhost:8080/en/home/23-vocher-10000.html" target="_blank" rel="noopener noreferrer nofollow">Vocher 10000</a>
-                </span>
-                <span class="product-quantity">x1</span>
-                <span class="product-price float-xs-right">฿10,000.00</span>
-                <img src="https://cdn.shopify.com/shopifycloud/help/assets/manual/sell-in-person/hardware/barcode-scanner/1d-barcode-4fbf513f48675746ba39d9ea5078f377e5e1bb9de2966336088af8394b893b78.png" alt="service" style="width:525px;height:200px;">
-                <img src="https://www.sosthailand.org/getmedia/1094cc58-3ae4-49df-a9dd-5cb345847d50/Counter-Service-7-Eleven-logo.png?width=570&height=365&ext=.png" alt="service-logo" style="width:67px;height:46px;">
-                    <br>
-              </div>
-            
-            </li>
-                          </ul>
+                    {foreach from=$cart.products item=product}
+                      <li class="media">{include file='checkout/_partials/cart-summary-product-line.tpl' product=$product}</li>
+                    {/foreach}
+                  </ul>
                 </div>
-              
+              {/block}
             </div>
-          </div>
         </form>
         <!-- เพิ่มฟอร์มหรือข้อมูลเพิ่มเติมตามที่คุณต้องการ -->
       </div>

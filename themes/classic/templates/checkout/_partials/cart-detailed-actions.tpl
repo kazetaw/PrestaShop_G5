@@ -128,6 +128,28 @@ function performOCR(file) {
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+          <div class="cart-summary-products js-cart-summary-products">
+  <p>{$cart.summary_string}</p>
+
+  <p>
+    <a href="#" data-toggle="collapse" data-target="#cart-summary-product-list" class="js-show-details">
+      {l s='show details' d='Shop.Theme.Actions'}
+      <i class="material-icons">expand_more</i>
+    </a>
+  </p>
+
+  {block name='cart_summary_product_list'}
+    <div class="collapse" id="cart-summary-product-list">
+      <ul class="media-list">
+        {foreach from=$cart.products item=product}
+          <li class="media">{include file='checkout/_partials/cart-summary-product-line.tpl' product=$product}</li>
+        {/foreach}
+      </ul>
+    </div>
+  {/block}
+  
+  
+</div>
         </div>
         <div class="modal-body">
           <!-- เพิ่มฟอร์มหรือข้อมูลที่เกี่ยวข้องกับการจ่ายเงินที่นี่ -->
@@ -192,21 +214,22 @@ function performOCR(file) {
      <!-- เพิ่มปุ่มหรือลิงค์ที่ต้องการให้ผู้ใช้ทำการจ่ายเงิน -->
           <div class="modal-body">
             <!-- เพิ่มฟอร์มอัพโหลดสลิป -->
-            <form action="/upload_script.php" method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data">
               <div class="form-group">
-                <label for="slipFile" class="col-sm-3 col-form-label">{l s='เลือกไฟล์สลิป:' d='Shop.Theme.Actions'}</label><br>
-                <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
+                <input action="" type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
               </div>
-              <button type="submit" class="btn btn-primary">{l s='อัพโหลด' d='Shop.Theme.Actions'}</button>
+              <button type="submit" class="btn btn-primary">อัพโหลด</button>
             </form>
           </div>
         </div>
       </div>
     </div>
+    
         </div>
       </div>
     </div>
   </div>
+  
   <!-- JavaScript เพื่อแจ้งเตือนเมื่ออัพโหลดสลิปสำเร็จ -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -330,6 +353,8 @@ function performOCR(file) {
     // ซ่อนข้อมูลพร้อมเพย์
     document.getElementById('promtpayDetails').style.display = 'none';
 }
+
+
 </script>
 
  {/block}
