@@ -35,6 +35,7 @@ services:
       - ./classes:/var/www/html/classes
       - ./pdf:/var/www/html/pdf
       - ./controllers:/var/www/html/controllers
+      - ./modules:/var/www/html/modules
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin

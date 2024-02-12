@@ -5,7 +5,7 @@
   {hook h='displayPaymentTop'}
 
   <div class="form-group">
-    <label for="slipFile" class="col-sm-3 col-form-label">{l s='เลือกไฟล์สลิป:' d='Shop.Theme.Actions'}</label><br>
+    <label for="slipFile" class="col-sm-3 col-form-label">{l s='' d='Shop.Theme.Actions'}</label><br>
     <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
   </div>
   
@@ -34,7 +34,7 @@
                 data-module-name="{$option.module_name}"
                 name="payment-option"
                 type="radio"
-                required
+                required 
                 
                 {if ($selected_payment_option == $option.id || $is_free) || ($payment_options|@count === 1 && $module_options|@count === 1)} checked {/if}
               >
@@ -64,12 +64,11 @@
           </div>
         </div>
         <!-- เพิ่มฟอร์มหรือข้อมูลที่เกี่ยวข้องกับการจ่ายเงินที่นี่ -->
-          <p>เลือกช่องทางการชำระเงิน:</p>
-          <input type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
-          <label for="html" style="display: inline-block; margin-right: 15px;">ธนาคาร</label>
-          <input type="radio" id="css" name="fav_language" value="QR" onclick="showQRCode()" style="display: inline-block; margin-right: 5px;">
-          <label for="css" style="display: inline-block; margin-right: 15px;">QR Code</label>
-          <input type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptpayDetails()" style="display: inline-block;">
+          <input class="custom-radio float-xs-left" type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
+          <label for="html" style="display: inline-block; margin-right: 15px;">ธนาคาร</label> <br>
+          <input class="custom-radio float-xs-left" type="radio" id="css" name="fav_language" value="QR" onclick="showQRCode()" style="display: inline-block; margin-right: 5px;">
+          <label for="css" style="display: inline-block; margin-right: 15px;">QR Code</label> <br>
+          <input class="custom-radio float-xs-left" type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptpayDetails()" style="display: inline-block;">
           <label for="javascript" style="display: inline-block;">Promtpay</label>
           <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
           <div id="bankDetails" style="display:none;">
