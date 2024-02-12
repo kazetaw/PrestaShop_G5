@@ -26,8 +26,9 @@
       {foreach from=$module_options item="option"}
         <div>
           <div id="{$option.id}-container" class="payment-option clearfix">
+            <label for="html" style="display: inline-block; margin-right: 15px;">ธนาคาร</label>
             {* This is the way an option should be selected when Javascript is enabled *}
-            <span class="custom-radio float-xs-left">
+            <span class="custom-radio float-xs-left"> <br>
               <input
                 class="ps-shown-by-js {if $option.binary} binary {/if}"
                 id="{$option.id}"
@@ -53,9 +54,9 @@
                 </button>
               {/if}
             </form>
-
             <label for="{$option.id}">
               <span>{$option.call_to_action_text}</span>
+              
               {if $option.logo}
                 <img src="{$option.logo}" loading="lazy">
               {/if}
@@ -65,7 +66,7 @@
         </div>
         <!-- เพิ่มฟอร์มหรือข้อมูลที่เกี่ยวข้องกับการจ่ายเงินที่นี่ -->
           <input class="custom-radio float-xs-left" type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
-          <label for="html" style="display: inline-block; margin-right: 15px;">ธนาคาร</label> <br>
+          <label for="html" style="display: inline-block; margin-right: 15px;">เคาท์เตอร์เซอร์วิส</label> <br>
           <input class="custom-radio float-xs-left" type="radio" id="css" name="fav_language" value="QR" onclick="showQRCode()" style="display: inline-block; margin-right: 5px;">
           <label for="css" style="display: inline-block; margin-right: 15px;">QR Code</label> <br>
           <input class="custom-radio float-xs-left" type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptpayDetails()" style="display: inline-block;">
