@@ -296,6 +296,7 @@ function performOCR(file) {
     document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
     // ซ่อนข้อมูลธนาคาร
     document.getElementById('CounterServiceDetails').style.display = 'none';
+  
   }
   function showCounterServiceDetails() {
     // Hide other payment details

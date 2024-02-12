@@ -120,7 +120,7 @@
         document.getElementById('promtpayDetails').style.display = 'none';
   
         document.getElementById('bankDetails').style.display = 'none';
-        document.getElementById('CounterService').style.display = 'none';
+        document.getElementById('CounterServiceDetails').style.display = 'none';
 
       }
     
@@ -131,7 +131,7 @@
         document.getElementById('qrCodeDetails').style.display = 'none';
         //ซ่อน Promtpay
         document.getElementById('promtpayDetails').style.display = 'none';
-        document.getElementById('CounterService').style.display = 'none';
+        document.getElementById('CounterServiceDetails').style.display = 'none';
 
       }
       function showPromptpayDetails() {
@@ -140,7 +140,7 @@
         // ซ่อน QR Code
         document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
         // ซ่อนข้อมูลธนาคาร
-        document.getElementById('CounterService').style.display = 'none';
+        document.getElementById('CounterServiceDetails').style.display = 'none';
 
       }
       function showCounterServiceDetails() {
