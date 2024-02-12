@@ -145,6 +145,25 @@ function performOCR(file) {
             
             <div id="CounterServiceDetails" style="display:none;">
               <p>{l s='โชว์เคาท์เตอร์เซอร์วิสที่นี่' d='Shop.Theme.Actions'}</p>
+              <div class="cart-overview js-cart" data-refresh-url="{url entity='cart' params=['ajax' => true, 'action' => 'refresh']}">
+                {if $cart.products}
+                <ul class="cart-items">
+                  {foreach from=$cart.products item=product}
+                    <li class="cart-item">
+                      {block name='cart_detailed_product_line'}
+                        {include file='checkout/_partials/cart-detailed-product-line.tpl' product=$product}
+                      {/block}
+                    </li>
+                    {if is_array($product.customizations) && $product.customizations|count >1}<hr>{/if}
+                  {/foreach}
+                </ul>
+                {else}
+                  <span class="no-items">{l s='There are no more items in your cart' d='Shop.Theme.Checkout'}</span>
+                {/if}
+                <img src="https://cdn.shopify.com/shopifycloud/help/assets/manual/sell-in-person/hardware/barcode-scanner/1d-barcode-4fbf513f48675746ba39d9ea5078f377e5e1bb9de2966336088af8394b893b78.png" alt="service" style="width:425px;height:100px;">
+                <img src="https://www.sosthailand.org/getmedia/1094cc58-3ae4-49df-a9dd-5cb345847d50/Counter-Service-7-Eleven-logo.png?width=570&height=365&ext=.png" alt="service-logo" style="width:67px;height:46px;">
+                    <br>
+              </div>
             </div>
             <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
             <div id="bankDetails" style="display:none;">
@@ -164,6 +183,7 @@ function performOCR(file) {
             <!-- This link should point to the PDF or file generated for payment. Adjust the href attribute accordingly. -->
             <a href="/path/to/counter_service_payment_slip.pdf" download="{l s='Payment Slip' d='Shop.Theme.Actions'}">{l s='Download Payment Slip' d='Shop.Theme.Actions'}</a>
             </div>
+            
 
           </form>
           <!-- เพิ่มฟอร์มหรือข้อมูลเพิ่มเติมตามที่คุณต้องการ -->

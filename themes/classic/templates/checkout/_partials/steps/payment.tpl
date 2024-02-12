@@ -86,7 +86,43 @@
           <!-- แสดงข้อมูลของพร้อมเพย์มื่อคลิกที่ "CounterService" -->
 
           <div id="CounterServiceDetails" style="display:none;">
-            <p>{l s='โชว์เคาท์เตอร์เซอร์วิสที่นี่' d='Shop.Theme.Actions'}</p>
+            <div class="cart-summary-products js-cart-summary-products">
+              <p>1 item</p>
+            
+              <p>
+                <a href="#" data-toggle="collapse" data-target="#cart-summary-product-list" class="js-show-details" aria-expanded="true">
+                  show details
+                  <i class="material-icons">expand_less</i>
+                </a>
+              </p>
+            
+              
+                <div class="collapse in" id="cart-summary-product-list" aria-expanded="true" style="">
+                  <ul class="media-list">
+                              <li class="media">
+              <div class="media-left">
+                <a href="http://localhost:8080/en/home/23-vocher-10000.html" title="Vocher 10000">
+                          <picture>
+                                          <img class="media-object" src="http://localhost:8080/28-small_default/vocher-10000.jpg" alt="Vocher 10000" loading="lazy">
+                    </picture>
+                      </a>
+              </div>
+              <div class="media-body">
+                <span class="product-name">
+                    <a href="http://localhost:8080/en/home/23-vocher-10000.html" target="_blank" rel="noopener noreferrer nofollow">Vocher 10000</a>
+                </span>
+                <span class="product-quantity">x1</span>
+                <span class="product-price float-xs-right">฿10,000.00</span>
+                <img src="https://cdn.shopify.com/shopifycloud/help/assets/manual/sell-in-person/hardware/barcode-scanner/1d-barcode-4fbf513f48675746ba39d9ea5078f377e5e1bb9de2966336088af8394b893b78.png" alt="service" style="width:525px;height:200px;">
+                <img src="https://www.sosthailand.org/getmedia/1094cc58-3ae4-49df-a9dd-5cb345847d50/Counter-Service-7-Eleven-logo.png?width=570&height=365&ext=.png" alt="service-logo" style="width:67px;height:46px;">
+                    <br>
+              </div>
+            
+            </li>
+                          </ul>
+                </div>
+              
+            </div>
           </div>
         </form>
         <!-- เพิ่มฟอร์มหรือข้อมูลเพิ่มเติมตามที่คุณต้องการ -->
@@ -99,6 +135,8 @@
         document.getElementById('promtpayDetails').style.display = 'none';
   
         document.getElementById('bankDetails').style.display = 'none';
+        document.getElementById('CounterService').style.display = 'none';
+
       }
     
       function showBankDetails() {
@@ -108,6 +146,8 @@
         document.getElementById('qrCodeDetails').style.display = 'none';
         //ซ่อน Promtpay
         document.getElementById('promtpayDetails').style.display = 'none';
+        document.getElementById('CounterService').style.display = 'none';
+
       }
       function showPromptpayDetails() {
         // แสดงข้อมูลพร้อมเพย์เมื่อคลิกที่ "Promtpay"
@@ -115,6 +155,8 @@
         // ซ่อน QR Code
         document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
         // ซ่อนข้อมูลธนาคาร
+        document.getElementById('CounterService').style.display = 'none';
+
       }
       function showCounterServiceDetails() {
         // แสดงข้อมูลเมื่อคลิกที่ "CounterService"
