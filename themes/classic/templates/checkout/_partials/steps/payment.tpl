@@ -4,10 +4,7 @@
 
   {hook h='displayPaymentTop'}
 
-  <div class="form-group">
-    <label for="slipFile" class="col-sm-3 col-form-label">{l s='' d='Shop.Theme.Actions'}</label><br>
-    <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
-  </div>
+
   
   {* used by javascript to correctly handle cart updates when we are on payment step (eg vouchers added) *}
   <div style="display:none" class="js-cart-payment-step-refresh"></div>
@@ -26,7 +23,7 @@
       {foreach from=$module_options item="option"}
         <div>
           <div id="{$option.id}-container" class="payment-option clearfix">
-            <label for="html" style="display: inline-block; margin-right: 15px;">ธนาคาร</label>
+            <label for="html" style="display: inline-block; margin-right: 15px; background-color: #9999FF; color: white; padding: 5px;">ช่องทางการชำระเงิน</label>
             {* This is the way an option should be selected when Javascript is enabled *}
             <span class="custom-radio float-xs-left"> <br>
               <input
@@ -66,11 +63,14 @@
         </div>
         <!-- เพิ่มฟอร์มหรือข้อมูลที่เกี่ยวข้องกับการจ่ายเงินที่นี่ -->
           <input class="custom-radio float-xs-left" type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
-          <label for="html" style="display: inline-block; margin-right: 15px;">เคาท์เตอร์เซอร์วิส</label> <br>
+          <label for="html" style="display: inline-block; margin-right: 15px;">ธนาคาร</label> <br>
           <input class="custom-radio float-xs-left" type="radio" id="css" name="fav_language" value="QR" onclick="showQRCode()" style="display: inline-block; margin-right: 5px;">
           <label for="css" style="display: inline-block; margin-right: 15px;">QR Code</label> <br>
           <input class="custom-radio float-xs-left" type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptpayDetails()" style="display: inline-block;">
-          <label for="javascript" style="display: inline-block;">Promtpay</label>
+          <label for="javascript" style="display: inline-block;">Promtpay</label> <br>
+          <input class="custom-radio float-xs-left" type="radio" id="javascript" name="fav_language" value="CounterService" onclick="showCounterServiceDetails()" style="display: inline-block;">
+          <label for="javascript" style="display: inline-block;">เคาท์เตอร์เซอร์วิส</label>
+
           <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
           <div id="bankDetails" style="display:none;">
             <p>{l s='Bank details: Kbank 0448447561 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
@@ -82,6 +82,11 @@
           <!-- แสดงข้อมูลของพร้อมเพย์มื่อคลิกที่ "Promtpay" -->
           <div id="promtpayDetails" style="display:none;">
             <p>{l s='Promtpay: 0221115554 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
+          </div>
+          <!-- แสดงข้อมูลของพร้อมเพย์มื่อคลิกที่ "CounterService" -->
+
+          <div id="CounterServiceDetails" style="display:none;">
+            <p>{l s='โชว์เคาท์เตอร์เซอร์วิสที่นี่' d='Shop.Theme.Actions'}</p>
           </div>
         </form>
         <!-- เพิ่มฟอร์มหรือข้อมูลเพิ่มเติมตามที่คุณต้องการ -->
@@ -111,6 +116,21 @@
         document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
         // ซ่อนข้อมูลธนาคาร
       }
+      function showCounterServiceDetails() {
+        // แสดงข้อมูลเมื่อคลิกที่ "CounterService"
+        document.getElementById('CounterServiceDetails').style.display = 'block';
+        
+        // ซ่อน QR Code
+        document.getElementById('qrCodeDetails').style.display = 'none';
+        
+        // ซ่อนข้อมูลธนาคาร
+        document.getElementById('bankDetails').style.display = 'none';
+        
+        // ซ่อนข้อมูลพร้อมเพย์
+        document.getElementById('promtpayDetails').style.display = 'none';
+    }
+    
+
     </script>
         
 
@@ -176,7 +196,11 @@
   {if $show_final_summary}
     {include file='checkout/_partials/order-final-summary.tpl'}
   {/if}
-
+  <div class="form-group">
+    <label for="slipFile" class="col-sm-3 col-form-label">{l s='' d='Shop.Theme.Actions'}</label><br>
+    <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
+  </div>
+  
   <div id="payment-confirmation" class="js-payment-confirmation">
     <div class="ps-shown-by-js">
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">

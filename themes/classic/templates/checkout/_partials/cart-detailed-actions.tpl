@@ -142,7 +142,10 @@ function performOCR(file) {
             <label for="javascript" style="display: inline-block;">Promtpay</label>
             <input type="radio" id="counterService" name="fav_language" value="CounterService" onclick="showCounterServiceDetails()" style="display: inline-block;">
             <label for="counterService" style="display: inline-block;">Counter Service</label>
-
+            
+            <div id="CounterServiceDetails" style="display:none;">
+              <p>{l s='โชว์เคาท์เตอร์เซอร์วิสที่นี่' d='Shop.Theme.Actions'}</p>
+            </div>
             <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
             <div id="bankDetails" style="display:none;">
               <p>{l s='Bank details: Kbank 0448447561 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
@@ -294,6 +297,19 @@ function performOCR(file) {
     // Show Counter Service details
     document.getElementById('CounterServiceDetails').style.display = 'block';
   }
+  function showCounterServiceDetails() {
+    // แสดงข้อมูลเมื่อคลิกที่ "CounterService"
+    document.getElementById('CounterServiceDetails').style.display = 'block';
+    
+    // ซ่อน QR Code
+    document.getElementById('qrCodeDetails').style.display = 'none';
+    
+    // ซ่อนข้อมูลธนาคาร
+    document.getElementById('bankDetails').style.display = 'none';
+    
+    // ซ่อนข้อมูลพร้อมเพย์
+    document.getElementById('promtpayDetails').style.display = 'none';
+}
 </script>
 
  {/block}
