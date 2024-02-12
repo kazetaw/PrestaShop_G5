@@ -140,6 +140,9 @@ function performOCR(file) {
             <label for="css" style="display: inline-block; margin-right: 15px;">QR Code</label>
             <input type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptpayDetails()" style="display: inline-block;">
             <label for="javascript" style="display: inline-block;">Promtpay</label>
+            <input type="radio" id="counterService" name="fav_language" value="CounterService" onclick="showCounterServiceDetails()" style="display: inline-block;">
+            <label for="counterService" style="display: inline-block;">Counter Service</label>
+
             <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
             <div id="bankDetails" style="display:none;">
               <p>{l s='Bank details: Kbank 0448447561 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
@@ -152,6 +155,13 @@ function performOCR(file) {
             <div id="promtpayDetails" style="display:none;">
               <p>{l s='Promtpay: 0221115554 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
             </div>
+
+            <div id="CounterServiceDetails" style="display:none;">
+              <p>{l s='กรุณาดาวน์โหลดหลักฐานการชำระเงินและชำระเงินที่เคาน์เตอร์เซอร์วิสทุกสาขา' d='Shop.Theme.Actions'}</p>
+            <!-- This link should point to the PDF or file generated for payment. Adjust the href attribute accordingly. -->
+            <a href="/path/to/counter_service_payment_slip.pdf" download="{l s='Payment Slip' d='Shop.Theme.Actions'}">{l s='Download Payment Slip' d='Shop.Theme.Actions'}</a>
+            </div>
+
           </form>
           <!-- เพิ่มฟอร์มหรือข้อมูลเพิ่มเติมตามที่คุณต้องการ -->
         </div>
@@ -254,8 +264,9 @@ function performOCR(file) {
     document.getElementById('qrCodeDetails').style.display = 'block';
     // ซ่อนข้อมูลธนาคาร
     document.getElementById('promtpayDetails').style.display = 'none';
-
+    
     document.getElementById('bankDetails').style.display = 'none';
+    document.getElementById('CounterServiceDetails').style.display = 'none';
   }
 
   function showBankDetails() {
@@ -265,6 +276,7 @@ function performOCR(file) {
     document.getElementById('qrCodeDetails').style.display = 'none';
     //ซ่อน Promtpay
     document.getElementById('promtpayDetails').style.display = 'none';
+    document.getElementById('CounterServiceDetails').style.display = 'none';
   }
   function showPromptpayDetails() {
     // แสดงข้อมูลพร้อมเพย์เมื่อคลิกที่ "Promtpay"
@@ -272,6 +284,15 @@ function performOCR(file) {
     // ซ่อน QR Code
     document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
     // ซ่อนข้อมูลธนาคาร
+    document.getElementById('CounterServiceDetails').style.display = 'none';
+  }
+  function showCounterServiceDetails() {
+    // Hide other payment details
+    document.getElementById('promtpayDetails').style.display = 'none';
+    document.getElementById('qrCodeDetails').style.display = 'none';
+    document.getElementById('bankDetails').style.display = 'none';
+    // Show Counter Service details
+    document.getElementById('CounterServiceDetails').style.display = 'block';
   }
 </script>
 
