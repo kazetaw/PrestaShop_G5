@@ -147,8 +147,6 @@ function performOCR(file) {
       </ul>
     </div>
   {/block}
-  
-  
 </div>
         </div>
         <div class="modal-body">
@@ -182,11 +180,12 @@ function performOCR(file) {
                 {else}
                   <span class="no-items">{l s='There are no more items in your cart' d='Shop.Theme.Checkout'}</span>
                 {/if}
-                <img src="https://cdn.shopify.com/shopifycloud/help/assets/manual/sell-in-person/hardware/barcode-scanner/1d-barcode-4fbf513f48675746ba39d9ea5078f377e5e1bb9de2966336088af8394b893b78.png" alt="service" style="width:425px;height:100px;">
+                <img src="https://cdn.shopify.com/shopifycloud/help/assets/manual/sell-in-person/hardware/barcode-scanner/1d-barcode-4fbf513f48675746ba39d9ea5078f377e5e1bb9de2966336088af8394b893b78.png" alt="service" style="width:425px;height:100px;"><br>
                 <img src="https://www.sosthailand.org/getmedia/1094cc58-3ae4-49df-a9dd-5cb345847d50/Counter-Service-7-Eleven-logo.png?width=570&height=365&ext=.png" alt="service-logo" style="width:67px;height:46px;">
                     <br>
               </div>
             </div>
+
             <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
             <div id="bankDetails" style="display:none;">
               <p>{l s='Bank details: Kbank 0448447561 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
@@ -230,41 +229,7 @@ function performOCR(file) {
     </div>
   </div>
   
-  <!-- JavaScript เพื่อแจ้งเตือนเมื่ออัพโหลดสลิปสำเร็จ -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const attachmentModal = new bootstrap.Modal(document.getElementById('attachmentModal'));
-  
-      // ฟังก์ชันที่เรียกเมื่ออัพโหลดสลิปสำเร็จ
-      function handleUploadSuccess() {
-        // ปิด Modal
-        attachmentModal.hide();
-        
-        // แสดงข้อความแจ้งเตือนหรือดำเนินการเพิ่มเติมตามที่คุณต้องการ
-        alert('ชำระเงินสำเร็จ! ขอบคุณที่อัพโหลดสลิปการโอนเงิน.');
-    
-        // เปลี่ยนหน้า
-        window.location.href = '/new_page.html'; // แทนที่ '/new_page.html' ด้วย URL ที่คุณต้องการ
-    }
-    
-      }
-  
-      // จำลองการเรียกใช้ handleUploadSuccess() เมื่ออัพโหลดสำเร็จ (ในทางปฏิบัติ คุณต้องเปลี่ยนแปลงฟังก์ชันนี้)
-      const uploadForm = document.querySelector('#attachmentModal form');
-      uploadForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-  
-        // สำหรับการจำลอง ให้เรียกใช้ handleUploadSuccess() หลังจากเสร็จสิ้นการอัพโหลด
-        setTimeout(handleUploadSuccess, 2000);
-      });
-   
-      // เพิ่มโค้ดที่จะทำงานเมื่อ Modal ถูกปิด
-        attachmentModal._element.addEventListener('hidden.bs.modal', function () {
-        // เพิ่มโค้ดที่ต้องการทำหลังจาก Modal ถูกปิด
-      });
-
-  </script>
- <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 <script>
   document.getElementById('slipFile').addEventListener('change', function() {
     var file = this.files[0];
@@ -353,8 +318,6 @@ function performOCR(file) {
     // ซ่อนข้อมูลพร้อมเพย์
     document.getElementById('promtpayDetails').style.display = 'none';
 }
-
-
 </script>
 
  {/block}
