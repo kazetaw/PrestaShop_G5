@@ -1,0 +1,15 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://localhost:8080/th/');
+  await page.getByRole('link', { name: 'Vocher 100' }).nth(2).click();
+  await page.getByRole('button', { name: ' หยิบใส่ตะกร้า' }).click();
+  await page.getByRole('link', { name: ' ทำรายการชำระเงิน' }).click();
+  await page.getByRole('button', { name: 'Place orders' }).click();
+  await page.getByRole('link', { name: 'แสดงรายละเอียด expand_more' }).click();
+  await page.getByLabel('Bank transfer').check();
+  await page.setInputFiles('#slipFile', 'C:/Users/computer/Downloads/test/imgs/Screenshot 2023-07-06 162012.png');
+  const $photoUpload = await page.$('#slipFile');
+  const $photoUploadParent = await $photoUpload.$('xpath=..');
+  const $photoUploadFigure = await $photoUploadParent.$$('figure');
+});
