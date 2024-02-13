@@ -213,14 +213,12 @@ function performOCR(file) {
      <!-- เพิ่มปุ่มหรือลิงค์ที่ต้องการให้ผู้ใช้ทำการจ่ายเงิน -->
           <div class="modal-body">
             <!-- เพิ่มฟอร์มอัพโหลดสลิป -->
-            <form method="post" action="http://localhost:8080/en/order-confirmation?id_cart=53&id_module=27&id_order=46&key=5f3ad7b0c5ecdfe67998ff6811ef73d3" onsubmit="showAlert()">
-              <p style="text-align: left;">Please attach a proof of payment/transfer slip.</p>
+            <form method="post"action="http://localhost:8080/en/order-confirmation?id_cart=64&id_module=27&id_order=52&key=d010a03be088ca16f2ec5a4acf62cc01" onsubmit="showAlert()">
               <div class="form-group">
                   <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
               </div>
-            </form> 
-            <button type="submit" class="btn btn-primary">Upload Slip</button>
-          </div>
+              <button type="submit" class="btn btn-primary">อัปโหลด</button>
+          </form>          
         </div>
       </div>
     </div>
@@ -230,52 +228,22 @@ function performOCR(file) {
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
   <script>
       function showAlert() {
           Swal.fire({
-              title: "ชำระเงินเสร็จสิ้น",
-              text: "ขอบคุณที่สนับสนุน!",
+              title: "Good job!",
+              text: "You clicked the button!",
               icon: "success"
           });
-            setTimeout(function () {
+  
+          // รอ 2 วินาที (2000 milliseconds) ก่อนที่จะส่งข้อมูลแบบฟอร์ม
+          setTimeout(function () {
               document.getElementById('yourFormId').submit();
           }, 2000);
       }
   </script>
-  <!-- JavaScript เพื่อแจ้งเตือนเมื่ออัพโหลดสลิปสำเร็จ -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const attachmentModal = new bootstrap.Modal(document.getElementById('attachmentModal'));
   
-      // ฟังก์ชันที่เรียกเมื่ออัพโหลดสลิปสำเร็จ
-      function handleUploadSuccess() {
-        // ปิด Modal
-        attachmentModal.hide();
-        
-        // แสดงข้อความแจ้งเตือนหรือดำเนินการเพิ่มเติมตามที่คุณต้องการ
-        alert('ชำระเงินสำเร็จ! ขอบคุณที่อัพโหลดสลิปการโอนเงิน.');
-    
-        // เปลี่ยนหน้า
-        window.location.href = '/new_page.html'; // แทนที่ '/new_page.html' ด้วย URL ที่คุณต้องการ
-    }
-    
-      }
-  
-      // จำลองการเรียกใช้ handleUploadSuccess() เมื่ออัพโหลดสำเร็จ (ในทางปฏิบัติ คุณต้องเปลี่ยนแปลงฟังก์ชันนี้)
-      const uploadForm = document.querySelector('#attachmentModal form');
-      uploadForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-  
-        // สำหรับการจำลอง ให้เรียกใช้ handleUploadSuccess() หลังจากเสร็จสิ้นการอัพโหลด
-        setTimeout(handleUploadSuccess, 2000);
-      });
-   
-      // เพิ่มโค้ดที่จะทำงานเมื่อ Modal ถูกปิด
-        attachmentModal._element.addEventListener('hidden.bs.modal', function () {
-        // เพิ่มโค้ดที่ต้องการทำหลังจาก Modal ถูกปิด
-      });
-
-  </script>
  <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 <script>
   document.getElementById('slipFile').addEventListener('change', function() {
