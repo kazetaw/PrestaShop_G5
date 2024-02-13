@@ -234,7 +234,7 @@ function performOCR(file) {
       function showAlert() {
           Swal.fire({
               title: "ชำระเงินเสร็จสิ้น",
-              text: "Order reference: ZNPQPKTYF",
+              text: "ขอบคุณที่สนับสนุน!",
               icon: "success"
           });
             setTimeout(function () {

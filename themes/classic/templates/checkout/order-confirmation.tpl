@@ -8,7 +8,7 @@
 
             {block name='order_confirmation_header'}
               <h3 class="h1 card-title">
-                <i class="material-icons rtl-no-flip done">&#xE876;</i>{l s='ทำการซื้อ Voucher สำเร็จ ขอบคุณที่สนับสนุน!🙏' d='Shop.Theme.Checkout'}
+                <i class="material-icons rtl-no-flip done">&#xE876;</i>{l s='Voucher purchase completed. Thank you for your valuable support! 🙏' d='Shop.Theme.Checkout'}
               </h3>
             {/block}
 
@@ -16,7 +16,7 @@
               {if $order.details.invoice_url}
                 {* [1][/1] is for a HTML tag. *}
                 {l
-                  s='คุณสามารถดาวน์โหลดใบกำกับภาษีได้ที่นี่ [1]download your invoice[/1]'
+                  s='You can download your tax invoice here [1]download your invoice[/1]'
                   d='Shop.Theme.Checkout'
                   sprintf=[
                     '[1]' => "<a href='{$order.details.invoice_url}'>",
