@@ -13,7 +13,6 @@
             {/block}
 
             <p>
-              {l s='เมื่อต้องการ' d='Shop.Theme.Checkout' sprintf=['%email%' => $order_customer.email]}
               {if $order.details.invoice_url}
                 {* [1][/1] is for a HTML tag. *}
                 {l

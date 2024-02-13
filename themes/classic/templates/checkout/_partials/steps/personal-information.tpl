@@ -71,9 +71,4 @@
 
 
   {/if}
-  <script>
-    function submitFormWithoutValidation() {
-        document.getElementById('myForm').submit();
-    }
-</script>
 {/block}

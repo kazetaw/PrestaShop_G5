@@ -124,10 +124,10 @@ function performOCR(file) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
+          <h5 class="modal-title" id="paymentModalLabel">{l s='Payment Options' d='Shop.Theme.Actions'}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>            <h3 class="h3 card-title">{l s='Order details' d='Shop.Theme.Checkout'}:</h3>
-
+          </button>
           <div class="cart-summary-products js-cart-summary-products">
   <p>{$cart.summary_string}</p>
 
@@ -145,25 +145,15 @@ function performOCR(file) {
           <li class="media">{include file='checkout/_partials/cart-summary-product-line.tpl' product=$product}</li>
         {/foreach}
       </ul>
-    </div>{block name='order_details'}
-          <div id="order-details" class="col-md-4">
-            <ul>
-              {if !$order.details.is_virtual}
-
-              {/if}
-              {if $order.details.recyclable}
-                <li>  
-                  <em>{l s='You have given permission to receive your order in recycled packaging.' d="Shop.Theme.Customeraccount"}</em>
-                </li>
-              {/if}
-            </ul>
-          </div>
-        {/block}
+    </div>
   {/block}
+  
+  
 </div>
         </div>
         <div class="modal-body">
           <!-- เพิ่มฟอร์มหรือข้อมูลที่เกี่ยวข้องกับการจ่ายเงินที่นี่ -->
+          <p>{l s='ขั้นตอนการจ่ายเงิน' d='Shop.Theme.Actions'}</p>
           <form action="/action_page.php">
             <p>เลือกช่องทางการชำระเงิน:</p>
             <input type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
@@ -176,6 +166,7 @@ function performOCR(file) {
             <label for="counterService" style="display: inline-block;">Counter Service</label>
             
             <div id="CounterServiceDetails" style="display:none;">
+              <p>{l s='โชว์เคาท์เตอร์เซอร์วิสที่นี่' d='Shop.Theme.Actions'}</p>
               <div class="cart-overview js-cart" data-refresh-url="{url entity='cart' params=['ajax' => true, 'action' => 'refresh']}">
                 {if $cart.products}
                 <ul class="cart-items">
@@ -191,12 +182,11 @@ function performOCR(file) {
                 {else}
                   <span class="no-items">{l s='There are no more items in your cart' d='Shop.Theme.Checkout'}</span>
                 {/if}
-                <img src="https://cdn.shopify.com/shopifycloud/help/assets/manual/sell-in-person/hardware/barcode-scanner/1d-barcode-4fbf513f48675746ba39d9ea5078f377e5e1bb9de2966336088af8394b893b78.png" alt="service" style="width:425px;height:100px;"><br>
+                <img src="https://cdn.shopify.com/shopifycloud/help/assets/manual/sell-in-person/hardware/barcode-scanner/1d-barcode-4fbf513f48675746ba39d9ea5078f377e5e1bb9de2966336088af8394b893b78.png" alt="service" style="width:425px;height:100px;">
                 <img src="https://www.sosthailand.org/getmedia/1094cc58-3ae4-49df-a9dd-5cb345847d50/Counter-Service-7-Eleven-logo.png?width=570&height=365&ext=.png" alt="service-logo" style="width:67px;height:46px;">
                     <br>
               </div>
             </div>
-
             <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
             <div id="bankDetails" style="display:none;">
               <p>{l s='Bank details: Kbank 0448447561 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
@@ -223,14 +213,13 @@ function performOCR(file) {
         <div class="modal-footer">
      <!-- เพิ่มปุ่มหรือลิงค์ที่ต้องการให้ผู้ใช้ทำการจ่ายเงิน -->
           <div class="modal-body">
-
             <!-- เพิ่มฟอร์มอัพโหลดสลิป -->
-        <form id="formsub" method="post" enctype="multipart/form-data" action="index.php" onsubmit="showAlert()">
-            <div class="form-group">
-                <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
-            </div>
-            <button type="submit" class="btn btn-primary">อัปโหลด</button>
-        </form>            
+            <form method="post" action="http://localhost:8080/en/order-confirmation?id_cart=52&id_module=27&id_order=45&key=b704ba05a1753bdcfb505cd50803d306" onsubmit="showAlert()">
+              <div class="form-group">
+                  <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
+              </div>
+              <button type="submit" class="btn btn-primary">อัปโหลด</button>
+          </form> 
           </div>
         </div>
       </div>
@@ -241,23 +230,53 @@ function performOCR(file) {
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
   <script>
       function showAlert() {
           Swal.fire({
-            title: "ชำระเงินเสร็จสิ้น",
-            text: "Order reference:TRECBWLBK!",
-            text: "Order reference:TRECBWLBK! ขอบคุณที่สนับสนุน",
-            icon: "success"
+              title: "ชำระเงินเสร็จสิ้น",
+              text: "Order reference: ZNPQPKTYF",
+              icon: "success"
           });
-          setTimeout(function () {
-            document.getElementById('formsub').submit();
-          }, 360000000000000);
-        }
+            setTimeout(function () {
+              document.getElementById('yourFormId').submit();
+          }, 2000);
+      }
   </script>
+  <!-- JavaScript เพื่อแจ้งเตือนเมื่ออัพโหลดสลิปสำเร็จ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const attachmentModal = new bootstrap.Modal(document.getElementById('attachmentModal'));
   
- 
-<script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+      // ฟังก์ชันที่เรียกเมื่ออัพโหลดสลิปสำเร็จ
+      function handleUploadSuccess() {
+        // ปิด Modal
+        attachmentModal.hide();
+        
+        // แสดงข้อความแจ้งเตือนหรือดำเนินการเพิ่มเติมตามที่คุณต้องการ
+        alert('ชำระเงินสำเร็จ! ขอบคุณที่อัพโหลดสลิปการโอนเงิน.');
+    
+        // เปลี่ยนหน้า
+        window.location.href = '/new_page.html'; // แทนที่ '/new_page.html' ด้วย URL ที่คุณต้องการ
+    }
+    
+      }
+  
+      // จำลองการเรียกใช้ handleUploadSuccess() เมื่ออัพโหลดสำเร็จ (ในทางปฏิบัติ คุณต้องเปลี่ยนแปลงฟังก์ชันนี้)
+      const uploadForm = document.querySelector('#attachmentModal form');
+      uploadForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+  
+        // สำหรับการจำลอง ให้เรียกใช้ handleUploadSuccess() หลังจากเสร็จสิ้นการอัพโหลด
+        setTimeout(handleUploadSuccess, 2000);
+      });
+   
+      // เพิ่มโค้ดที่จะทำงานเมื่อ Modal ถูกปิด
+        attachmentModal._element.addEventListener('hidden.bs.modal', function () {
+        // เพิ่มโค้ดที่ต้องการทำหลังจาก Modal ถูกปิด
+      });
+
+  </script>
+ <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 <script>
   document.getElementById('slipFile').addEventListener('change', function() {
     var file = this.files[0];
@@ -324,7 +343,6 @@ function performOCR(file) {
     document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
     // ซ่อนข้อมูลธนาคาร
     document.getElementById('CounterServiceDetails').style.display = 'none';
-  
   }
   function showCounterServiceDetails() {
     // Hide other payment details
@@ -347,6 +365,8 @@ function performOCR(file) {
     // ซ่อนข้อมูลพร้อมเพย์
     document.getElementById('promtpayDetails').style.display = 'none';
 }
+
+
 </script>
 
  {/block}

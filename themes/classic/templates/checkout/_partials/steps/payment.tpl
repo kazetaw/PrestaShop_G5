@@ -33,6 +33,7 @@
                 name="payment-option"
                 type="radio"
                 required 
+                
                 {if ($selected_payment_option == $option.id || $is_free) || ($payment_options|@count === 1 && $module_options|@count === 1)} checked {/if}
               >
                 
@@ -82,7 +83,7 @@
           <div id="promtpayDetails" style="display:none;">
             <p>{l s='Promtpay: 0221115554 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
           </div>
-          <!-- แสดงข้อมูลของCounterServiceเมื่อคลิกที่ "CounterService" -->
+          <!-- แสดงข้อมูลของพร้อมเพย์มื่อคลิกที่ "CounterService" -->
 
           <div id="CounterServiceDetails" style="display:none;">
             <div class="cart-summary-products js-cart-summary-products">
@@ -104,9 +105,6 @@
                   </ul>
                 </div>
               {/block}
-              <img src="https://cdn.shopify.com/shopifycloud/help/assets/manual/sell-in-person/hardware/barcode-scanner/1d-barcode-4fbf513f48675746ba39d9ea5078f377e5e1bb9de2966336088af8394b893b78.png" width="522" height="256"><br>
-              <img src="https://www.sosthailand.org/getmedia/1094cc58-3ae4-49df-a9dd-5cb345847d50/Counter-Service-7-Eleven-logo.png?width=570&height=365&ext=.png" alt="barcode" width="90" height="50">
-
             </div>
         </form>
         <!-- เพิ่มฟอร์มหรือข้อมูลเพิ่มเติมตามที่คุณต้องการ -->
@@ -119,7 +117,7 @@
         document.getElementById('promtpayDetails').style.display = 'none';
   
         document.getElementById('bankDetails').style.display = 'none';
-        document.getElementById('CounterServiceDetails').style.display = 'none';
+        document.getElementById('CounterService').style.display = 'none';
 
       }
     
@@ -130,7 +128,7 @@
         document.getElementById('qrCodeDetails').style.display = 'none';
         //ซ่อน Promtpay
         document.getElementById('promtpayDetails').style.display = 'none';
-        document.getElementById('CounterServiceDetails').style.display = 'none';
+        document.getElementById('CounterService').style.display = 'none';
 
       }
       function showPromptpayDetails() {
@@ -139,7 +137,7 @@
         // ซ่อน QR Code
         document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
         // ซ่อนข้อมูลธนาคาร
-        document.getElementById('CounterServiceDetails').style.display = 'none';
+        document.getElementById('CounterService').style.display = 'none';
 
       }
       function showCounterServiceDetails() {
@@ -158,6 +156,8 @@
     
 
     </script>
+        
+
         <div
           id="pay-with-{$option.id}-form"
           class="js-payment-option-form {if $option.id != $selected_payment_option} ps-hidden {/if}"
@@ -230,25 +230,6 @@
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
         {l s='อัพโหลดสลิป' d='Shop.Theme.Checkout'}
       </button>
-      <div id="payment-confirmation" class="js-payment-confirmation">
-        <div class="ps-shown-by-js">
-          <br>
-
-    <div class="clearfix">
-      <form method="GET" action="{$urls.pages.order}">
-        <button
-          class="continue btn btn-primary float-xs-right"
-          name="controller"
-          type="submit"
-          value="order"
-        >
-          {l s='Continue' d='Shop.Theme.Actions'}
-        </button>
-      </form>
-
-    </div>
-
-    </div>
       {if $show_final_summary}
         <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
           {l
