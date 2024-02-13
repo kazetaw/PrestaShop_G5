@@ -33,7 +33,6 @@
                 name="payment-option"
                 type="radio"
                 required 
-                
                 {if ($selected_payment_option == $option.id || $is_free) || ($payment_options|@count === 1 && $module_options|@count === 1)} checked {/if}
               >
                 
@@ -159,8 +158,6 @@
     
 
     </script>
-        
-
         <div
           id="pay-with-{$option.id}-form"
           class="js-payment-option-form {if $option.id != $selected_payment_option} ps-hidden {/if}"
@@ -233,6 +230,25 @@
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
         {l s='อัพโหลดสลิป' d='Shop.Theme.Checkout'}
       </button>
+      <div id="payment-confirmation" class="js-payment-confirmation">
+        <div class="ps-shown-by-js">
+          <br>
+
+    <div class="clearfix">
+      <form method="GET" action="{$urls.pages.order}">
+        <button
+          class="continue btn btn-primary float-xs-right"
+          name="controller"
+          type="submit"
+          value="order"
+        >
+          {l s='Continue' d='Shop.Theme.Actions'}
+        </button>
+      </form>
+
+    </div>
+
+    </div>
       {if $show_final_summary}
         <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
           {l

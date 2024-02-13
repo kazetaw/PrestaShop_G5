@@ -408,7 +408,6 @@ class OrderControllerCore extends FrontController
                         $checkoutDeliveryStep->getIncludeTaxes()
                     )
                 );
-
             $checkoutProcess->addStep($checkoutDeliveryStep);
         }
 
@@ -422,6 +421,7 @@ class OrderControllerCore extends FrontController
                     $translator
                 )
             ));
+            
 
         return $checkoutProcess;
     }

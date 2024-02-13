@@ -124,10 +124,10 @@ function performOCR(file) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="paymentModalLabel">{l s='Payment Options' d='Shop.Theme.Actions'}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>
+          </button>            <h3 class="h3 card-title">{l s='Order details' d='Shop.Theme.Checkout'}:</h3>
+
           <div class="cart-summary-products js-cart-summary-products">
   <p>{$cart.summary_string}</p>
 
@@ -145,7 +145,21 @@ function performOCR(file) {
           <li class="media">{include file='checkout/_partials/cart-summary-product-line.tpl' product=$product}</li>
         {/foreach}
       </ul>
-    </div>
+    </div>{block name='order_details'}
+          <div id="order-details" class="col-md-4">
+            <ul>
+              <li id="order-reference-value"><h4>Order reference:</h4> TRECBWLBK</li>
+              {if !$order.details.is_virtual}
+
+              {/if}
+              {if $order.details.recyclable}
+                <li>  
+                  <em>{l s='You have given permission to receive your order in recycled packaging.' d="Shop.Theme.Customeraccount"}</em>
+                </li>
+              {/if}
+            </ul>
+          </div>
+        {/block}
   {/block}
 </div>
         </div>
@@ -164,7 +178,6 @@ function performOCR(file) {
             <label for="counterService" style="display: inline-block;">Counter Service</label>
             
             <div id="CounterServiceDetails" style="display:none;">
-              <p>{l s='โชว์เคาท์เตอร์เซอร์วิสที่นี่' d='Shop.Theme.Actions'}</p>
               <div class="cart-overview js-cart" data-refresh-url="{url entity='cart' params=['ajax' => true, 'action' => 'refresh']}">
                 {if $cart.products}
                 <ul class="cart-items">
@@ -212,13 +225,14 @@ function performOCR(file) {
         <div class="modal-footer">
      <!-- เพิ่มปุ่มหรือลิงค์ที่ต้องการให้ผู้ใช้ทำการจ่ายเงิน -->
           <div class="modal-body">
+
             <!-- เพิ่มฟอร์มอัพโหลดสลิป -->
-            <form method="post" enctype="multipart/form-data">
-              <div class="form-group">
-                <input action="" type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
-              </div>
-              <button type="submit" class="btn btn-primary">อัพโหลด</button>
-            </form>
+<form method="post" enctype="multipart/form-data" action="index.php" onsubmit="showAlert()">
+    <div class="form-group">
+        <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
+    </div>
+    <button type="submit" class="btn btn-primary">อัปโหลด</button>
+</form>            
           </div>
         </div>
       </div>
@@ -228,7 +242,23 @@ function performOCR(file) {
       </div>
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+  <script>
+      function showAlert() {
+          Swal.fire({
+            title: "ชำระเงินเสร็จสิ้น",
+            text: "Order reference:TRECBWLBK!",
+            text: "Order reference:TRECBWLBK! ขอบคุณที่สนับสนุน",
+            icon: "success"
+          });
+          setTimeout(function () {
+            document.getElementById('yourFormId').submit();
+          }, 360000000000000);
+        }
+  </script>
   
+ 
 <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 <script>
   document.getElementById('slipFile').addEventListener('change', function() {
