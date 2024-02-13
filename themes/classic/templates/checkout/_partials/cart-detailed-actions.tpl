@@ -225,12 +225,12 @@ function performOCR(file) {
           <div class="modal-body">
 
             <!-- เพิ่มฟอร์มอัพโหลดสลิป -->
-        <form id="formsub" method="post" enctype="multipart/form-data" action="index.php" onsubmit="showAlert()">
-            <div class="form-group">
-                <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
-            </div>
-            <button type="submit" class="btn btn-primary">อัปโหลด</button>
-        </form>            
+<form method="post" enctype="multipart/form-data" action="index.php" onsubmit="showAlert()">
+    <div class="form-group">
+        <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
+    </div>
+    <button type="submit" class="btn btn-primary">อัปโหลด</button>
+</form>            
           </div>
         </div>
       </div>
@@ -251,7 +251,7 @@ function performOCR(file) {
             icon: "success"
           });
           setTimeout(function () {
-            document.getElementById('formsub').submit();
+            document.getElementById('yourFormId').submit();
           }, 360000000000000);
         }
   </script>
