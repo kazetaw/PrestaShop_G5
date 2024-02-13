@@ -153,7 +153,6 @@ function performOCR(file) {
         </div>
         <div class="modal-body">
           <!-- เพิ่มฟอร์มหรือข้อมูลที่เกี่ยวข้องกับการจ่ายเงินที่นี่ -->
-          <p>{l s='ขั้นตอนการจ่ายเงิน' d='Shop.Theme.Actions'}</p>
           <form action="/action_page.php">
             <p>เลือกช่องทางการชำระเงิน:</p>
             <input type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
@@ -214,7 +213,7 @@ function performOCR(file) {
      <!-- เพิ่มปุ่มหรือลิงค์ที่ต้องการให้ผู้ใช้ทำการจ่ายเงิน -->
           <div class="modal-body">
             <!-- เพิ่มฟอร์มอัพโหลดสลิป -->
-            <form method="post" action="http://localhost:8080/en/order-confirmation?id_cart=52&id_module=27&id_order=45&key=b704ba05a1753bdcfb505cd50803d306" onsubmit="showAlert()">
+            <form method="post" action="http://localhost:8080/en/order-confirmation?id_cart=53&id_module=27&id_order=46&key=5f3ad7b0c5ecdfe67998ff6811ef73d3" onsubmit="showAlert()">
               <div class="form-group">
                   <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
               </div>
