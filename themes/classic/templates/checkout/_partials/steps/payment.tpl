@@ -23,7 +23,7 @@
       {foreach from=$module_options item="option"}
         <div>
           <div id="{$option.id}-container" class="payment-option clearfix">
-            <label for="html" style="display: inline-block; margin-right: 15px; background-color: #9999FF; color: white; padding: 5px;">ช่องทางการชำระเงิน</label>
+            <label for="html" style="display: inline-block; margin-right: 15px; background-color: #9999FF; color: white; padding: 5px;">Payment Methods</label>
             {* This is the way an option should be selected when Javascript is enabled *}
             <span class="custom-radio float-xs-left"> <br>
               <input
@@ -230,7 +230,7 @@
   <div id="payment-confirmation" class="js-payment-confirmation">
     <div class="ps-shown-by-js">
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
-        {l s='อัพโหลดสลิป' d='Shop.Theme.Checkout'}
+        {l s='Upload' d='Shop.Theme.Checkout'}
       </button>
       {if $show_final_summary}
         <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
