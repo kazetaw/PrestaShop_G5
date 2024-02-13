@@ -148,7 +148,6 @@ function performOCR(file) {
     </div>{block name='order_details'}
           <div id="order-details" class="col-md-4">
             <ul>
-              <li id="order-reference-value"><h4>Order reference:</h4> TRECBWLBK</li>
               {if !$order.details.is_virtual}
 
               {/if}
@@ -165,7 +164,6 @@ function performOCR(file) {
         </div>
         <div class="modal-body">
           <!-- เพิ่มฟอร์มหรือข้อมูลที่เกี่ยวข้องกับการจ่ายเงินที่นี่ -->
-          <p>{l s='ขั้นตอนการจ่ายเงิน' d='Shop.Theme.Actions'}</p>
           <form action="/action_page.php">
             <p>เลือกช่องทางการชำระเงิน:</p>
             <input type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
