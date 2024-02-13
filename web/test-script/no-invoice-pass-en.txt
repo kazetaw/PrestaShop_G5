@@ -1,0 +1,16 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://localhost:8080/en/');
+  await page.getByRole('link', { name: 'Vocher 100' }).nth(2).click();
+  await page.getByRole('button', { name: ' Add to cart' }).click();
+  await page.getByRole('link', { name: ' Proceed to checkout' }).click();
+  await page.getByRole('button', { name: 'Place orders' }).click();
+  await page.getByRole('link', { name: 'show details expand_more' }).click();
+  await page.getByLabel('Bank transfer').check();
+  await page.setInputFiles('#slipFile', 'C:/Users/computer/Downloads/test/imgs/testimg1.png');
+  const $photoUpload = await page.$('#slipFile');
+  const $photoUploadParent = await $photoUpload.$('xpath=..');
+  const $photoUploadFigure = await $photoUploadParent.$$('figure');
+  await page.getByRole('button', { name: 'Upload' }).click();
+});
