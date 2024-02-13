@@ -105,12 +105,12 @@ function performOCR(file) {
       </div>
     {else}
       <div class="text-sm-center">
-        <a href="{$urls.pages.order}" class="btn btn-warning">{l s='ออกใบกำกับภาษี' d='Shop.Theme.Actions'}</a>
+        <a href="{$urls.pages.order}" class="btn btn-warning">{l s='Issue a tax invoice' d='Shop.Theme.Actions'}</a>
         {hook h='displayExpressCheckout'}
  
         <!-- ปุ่มจ่ายเงิน -->
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#paymentModal">
-          {l s='จ่ายเงิน' d='Shop.Theme.Actions'}
+          {l s='Place orders' d='Shop.Theme.Actions'}
         </button>
  
         {hook h='displayPaymentTop'}
@@ -154,9 +154,9 @@ function performOCR(file) {
         <div class="modal-body">
           <!-- เพิ่มฟอร์มหรือข้อมูลที่เกี่ยวข้องกับการจ่ายเงินที่นี่ -->
           <form action="/action_page.php">
-            <p>เลือกช่องทางการชำระเงิน:</p>
+            <p>Payment methods:</p>
             <input type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
-            <label for="html" style="display: inline-block; margin-right: 15px;">ธนาคาร</label>
+            <label for="html" style="display: inline-block; margin-right: 15px;">Bank transfer</label>
             <input type="radio" id="css" name="fav_language" value="QR" onclick="showQRCode()" style="display: inline-block; margin-right: 5px;">
             <label for="css" style="display: inline-block; margin-right: 15px;">QR Code</label>
             <input type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptpayDetails()" style="display: inline-block;">
@@ -165,7 +165,7 @@ function performOCR(file) {
             <label for="counterService" style="display: inline-block;">Counter Service</label>
             
             <div id="CounterServiceDetails" style="display:none;">
-              <p>{l s='โชว์เคาท์เตอร์เซอร์วิสที่นี่' d='Shop.Theme.Actions'}</p>
+              <p>{l s='' d='Shop.Theme.Actions'}</p>
               <div class="cart-overview js-cart" data-refresh-url="{url entity='cart' params=['ajax' => true, 'action' => 'refresh']}">
                 {if $cart.products}
                 <ul class="cart-items">
@@ -188,7 +188,7 @@ function performOCR(file) {
             </div>
             <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
             <div id="bankDetails" style="display:none;">
-              <p>{l s='Bank details: Kbank 0448447561 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
+              <p>{l s='Bank details: Kbank 0448447561 college of computing kku' d='Shop.Theme.Actions'}</p>
             </div>
             <!-- แสดงข้อมูลของ QR Code เมื่อคลิกที่ "QR Code" -->
             <div id="qrCodeDetails" style="display:none; text-align: center;">
@@ -196,7 +196,7 @@ function performOCR(file) {
             </div>
             <!-- แสดงข้อมูลของพร้อมเพย์มื่อคลิกที่ "Promtpay" -->
             <div id="promtpayDetails" style="display:none;">
-              <p>{l s='Promtpay: 0221115554 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
+              <p>{l s='Promtpay: 0221115554 college of computing kku' d='Shop.Theme.Actions'}</p>
             </div>
 
             <div id="CounterServiceDetails" style="display:none;">
@@ -214,11 +214,12 @@ function performOCR(file) {
           <div class="modal-body">
             <!-- เพิ่มฟอร์มอัพโหลดสลิป -->
             <form method="post" action="http://localhost:8080/en/order-confirmation?id_cart=53&id_module=27&id_order=46&key=5f3ad7b0c5ecdfe67998ff6811ef73d3" onsubmit="showAlert()">
+              <p style="text-align: left;">Please attach a proof of payment/transfer slip.</p>
               <div class="form-group">
                   <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
               </div>
-              <button type="submit" class="btn btn-primary">อัปโหลด</button>
-          </form> 
+            </form> 
+            <button type="submit" class="btn btn-primary">Upload Slip</button>
           </div>
         </div>
       </div>

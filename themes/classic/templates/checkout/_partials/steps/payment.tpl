@@ -63,13 +63,13 @@
         </div>
         <!-- เพิ่มฟอร์มหรือข้อมูลที่เกี่ยวข้องกับการจ่ายเงินที่นี่ -->
           <input class="custom-radio float-xs-left" type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
-          <label for="html" style="display: inline-block; margin-right: 15px;">ธนาคาร</label> <br>
+          <label for="html" style="display: inline-block; margin-right: 15px;">Bank transfer</label> <br>
           <input class="custom-radio float-xs-left" type="radio" id="css" name="fav_language" value="QR" onclick="showQRCode()" style="display: inline-block; margin-right: 5px;">
           <label for="css" style="display: inline-block; margin-right: 15px;">QR Code</label> <br>
           <input class="custom-radio float-xs-left" type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptpayDetails()" style="display: inline-block;">
           <label for="javascript" style="display: inline-block;">Promtpay</label> <br>
           <input class="custom-radio float-xs-left" type="radio" id="javascript" name="fav_language" value="CounterService" onclick="showCounterServiceDetails()" style="display: inline-block;">
-          <label for="javascript" style="display: inline-block;">เคาท์เตอร์เซอร์วิส</label>
+          <label for="javascript" style="display: inline-block;">Counter service</label>
 
           <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
           <div id="bankDetails" style="display:none;">
@@ -130,7 +130,7 @@
         document.getElementById('qrCodeDetails').style.display = 'none';
         //ซ่อน Promtpay
         document.getElementById('promtpayDetails').style.display = 'none';
-        document.getElementById('CounterService').style.display = 'none';
+        document.getElementById('CounterServiceDetails').style.display = 'none';
 
       }
       function showPromptpayDetails() {
@@ -139,7 +139,7 @@
         // ซ่อน QR Code
         document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
         // ซ่อนข้อมูลธนาคาร
-        document.getElementById('CounterService').style.display = 'none';
+        document.getElementById('CounterServiceDetails').style.display = 'none';
 
       }
       function showCounterServiceDetails() {
