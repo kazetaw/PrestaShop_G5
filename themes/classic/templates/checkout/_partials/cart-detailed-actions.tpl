@@ -213,7 +213,7 @@ function performOCR(file) {
      <!-- เพิ่มปุ่มหรือลิงค์ที่ต้องการให้ผู้ใช้ทำการจ่ายเงิน -->
           <div class="modal-body">
             <!-- เพิ่มฟอร์มอัพโหลดสลิป -->
-            <form method="post"action="http://localhost:8080/en/order-confirmation?id_cart=64&id_module=27&id_order=52&key=d010a03be088ca16f2ec5a4acf62cc01" onsubmit="showAlert()">
+            <form method="post"action="http://localhost:8080/en/order-confirmation?id_cart=66&id_module=27&id_order=56&key=abf13a7968f4a5c64810f10d52605de8" onsubmit="showAlert()">
               <div class="form-group">
                   <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
               </div>
@@ -232,8 +232,8 @@ function performOCR(file) {
   <script>
       function showAlert() {
           Swal.fire({
-              title: "Good job!",
-              text: "You clicked the button!",
+              title: "Payment successful!",
+              text: "Thank you for your support.",
               icon: "success"
           });
   
