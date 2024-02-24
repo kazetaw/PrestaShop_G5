@@ -1,11 +1,5 @@
-## Sprint #2 Tasks
-https://docs.google.com/spreadsheets/u/1/d/1aAVsUW5Thd1W70AHdKayAxooQMGU1v75VMvfctGP_l8/edit?fbclid=IwAR2lUHohYF5aAhNPV9x1pBv_nMni6KVqw_B4h7pUxxXscAsb5rH5jE9g-N0
+## Project Documentation and Resources
 
-## Sprint Planning & ProductBacklog
-https://docs.google.com/spreadsheets/d/1gHyhZkWK8st6c8J_GZUHQ6ZtWnURtJH-R3EzkDi2-j4/edit?usp=sharing
-
-## Task Board [Miro]
-https://miro.com/app/board/uXjVNuIcFyg=/
-
-## A-DAPT Blueprint
-https://miro.com/app/board/uXjVNzH1Mzs=/
+- **Sprint Backlog**: [Sprint Backlog Access](https://docs.google.com/spreadsheets/d/1gHyhZkWK8st6c8J_GZUHQ6ZtWnURtJH-R3EzkDi2-j4/edit#gid=1445771383) - Detailed breakdown of work for every sprint.
+- **Docker Image**: [Docker Hub Link](https://hub.docker.com/r/ttsuxz/prestashop-cp) - Our project's Docker image for deployment.
+- **A-DAPT Blueprint**: [Blueprint Details](https://miro.com/app/board/uXjVNzH1Mzs=/) - Design patterns for our project.
