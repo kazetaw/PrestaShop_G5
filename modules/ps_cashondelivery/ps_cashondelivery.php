@@ -52,7 +52,7 @@ class Ps_Cashondelivery extends PaymentModule
 
         parent::__construct();
 
-        $this->displayName = $this->trans('Cash on delivery (COD)', [], 'Modules.Cashondelivery.Admin');
+        $this->displayName = $this->trans('Prompt pay', [], 'Modules.Cashondelivery.Admin');
         $this->description = $this->trans('Accept cash payments on delivery to make it easy for customers to purchase on your store.', [], 'Modules.Cashondelivery.Admin');
     }
 
@@ -86,7 +86,7 @@ class Ps_Cashondelivery extends PaymentModule
 
         $cashOnDeliveryOption = new PaymentOption();
         $cashOnDeliveryOption->setModuleName($this->name);
-        $cashOnDeliveryOption->setCallToActionText($this->trans('Pay by Cash on Delivery', [], 'Modules.Cashondelivery.Shop'));
+        $cashOnDeliveryOption->setCallToActionText($this->trans('Prompt pay', [], 'Modules.Cashondelivery.Shop'));
         $cashOnDeliveryOption->setAction($this->context->link->getModuleLink($this->name, 'validation', [], true));
         $cashOnDeliveryOption->setAdditionalInformation($this->fetch('module:ps_cashondelivery/views/templates/hook/paymentOptions-additionalInformation.tpl'));
 

@@ -13,6 +13,7 @@ COPY ./classes ./classes
 COPY ./controllers ./controllers
 
 COPY ./modules ./modules
+
 COPY ./pdf ./pdf
 
 

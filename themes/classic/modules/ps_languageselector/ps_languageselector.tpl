@@ -37,6 +37,7 @@
           </li>
         {/foreach}
       </ul>
+      
       <select class="link hidden-md-up" aria-labelledby="language-selector-label">
         {foreach from=$languages item=language}
           <option value="{url entity='language' id=$language.id_lang}"{if $language.id_lang == $current_language.id_lang} selected="selected"{/if} data-iso-code="{$language.iso_code}">

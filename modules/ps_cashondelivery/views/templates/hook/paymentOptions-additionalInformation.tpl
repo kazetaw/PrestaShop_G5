@@ -18,5 +18,6 @@
  *}
 
 <section id="ps_cashondelivery-paymentOptions-additionalInformation">
-  <p>{l s='You pay for the merchandise upon delivery' d='Modules.Cashondelivery.Shop'}</p>
+  <p>{l s='0888888888 Promtpay' d='Modules.Cashondelivery.Shop'}</p>
+
 </section>

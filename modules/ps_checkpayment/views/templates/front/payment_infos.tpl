@@ -24,14 +24,19 @@
  *}
 
 <section>
-  <p>{l s='Please send us your check following these rules:' d='Modules.Checkpayment.Shop'}
+  <p>{l s='ช่องทางผ่านธนาคาร' d='Modules.Checkpayment.Shop'}
     <dl>
-      <dt>{l s='Amount' d='Modules.Checkpayment.Shop'}</dt>
-      <dd>{$checkTotal} {$checkTaxLabel}</dd>
-      <dt>{l s='Payee' d='Modules.Checkpayment.Shop'}</dt>
-      <dd>{$checkOrder}</dd>
-      <dt>{l s='Send your check to this address' d='Modules.Checkpayment.Shop'}</dt>
-      <dd>{$checkAddress nofilter}</dd>
+      <dt>{l s='ชื่อธนาคาร' d='Modules.Checkpayment.Shop'}</dt>
+      <dt>{l s='ธนาคารกสิกรไทย' d='Modules.Checkpayment.Shop'}</dt> 
+      <dt>{l s='ประเภทธนาคาร' d='Modules.Checkpayment.Shop'}</dt> 
+      <dt>{l s='ออมทรัพย์' d='Modules.Checkpayment.Shop'}</dt> 
+      <dt>{l s='เลขที่บัญชี' d='Modules.Checkpayment.Shop'}</dt> <br>
+      <dt>{l s='0448447561' d='Modules.Checkpayment.Shop'}</dt>
+      <dt>{l s='เจ้าของบัญชี' d='Modules.Checkpayment.Shop'}</dt>
+      <dt>{l s='สำนักมหาวิทยาลับขอนแก่น' d='Modules.Checkpayment.Shop'}</dt>
+      <dt>{l s='สาขา' d='Modules.Checkpayment.Shop'}</dt>
+      <dt>{l s='ขอนแก่น' d='Modules.Checkpayment.Shop'}</dt>
+
     </dl>
   </p>
 </section>

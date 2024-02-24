@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>onlinepayment</name>
+    <displayName><![CDATA[Online payment]]></displayName>
+    <version><![CDATA[1.0.0]]></version>
+    <description><![CDATA[Accept payments by displaying QR Code and Bank account number during the checkout.]]></description>
+    <author><![CDATA[SEN Power of friendship]]></author>
+    <tab><![CDATA[payments_gateways]]></tab>
+    <is_configurable>1</is_configurable>
+    <need_instance>1</need_instance>
+</module>

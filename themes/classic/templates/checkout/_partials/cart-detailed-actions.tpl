@@ -269,7 +269,11 @@ function performOCR(file) {
             if (code) {
               // กระทำเพิ่มเติมเมื่อพบ QR code
             } else {
-              alert('ไม่ใช่สลิป กรุณาอัพโหลดใหม่อีกครั้ง');
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Not Slip Try again!",
+              });
               document.getElementById('slipFile').value = "";
               // กระทำเพิ่มเติมเมื่อไม่พบ QR code
             }

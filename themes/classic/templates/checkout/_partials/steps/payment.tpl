@@ -4,8 +4,6 @@
 
   {hook h='displayPaymentTop'}
 
-
-  
   {* used by javascript to correctly handle cart updates when we are on payment step (eg vouchers added) *}
   <div style="display:none" class="js-cart-payment-step-refresh"></div>
 
@@ -23,25 +21,20 @@
       {foreach from=$module_options item="option"}
         <div>
           <div id="{$option.id}-container" class="payment-option clearfix">
-            <label for="html" style="display: inline-block; margin-right: 15px; background-color: #9999FF; color: white; padding: 5px;">Payment Methods</label>
             {* This is the way an option should be selected when Javascript is enabled *}
-            <span class="custom-radio float-xs-left"> <br>
+            <span class="custom-radio float-xs-left">
               <input
                 class="ps-shown-by-js {if $option.binary} binary {/if}"
                 id="{$option.id}"
                 data-module-name="{$option.module_name}"
                 name="payment-option"
                 type="radio"
-                required 
-                
+                required
                 {if ($selected_payment_option == $option.id || $is_free) || ($payment_options|@count === 1 && $module_options|@count === 1)} checked {/if}
               >
-                
               <span></span>
             </span>
-            <br>
             {* This is the way an option should be selected when Javascript is disabled *}
-            
             <form method="GET" class="ps-hidden-by-js">
               {if $option.id === $selected_payment_option}
                 {l s='Selected' d='Shop.Theme.Checkout'}
@@ -51,9 +44,9 @@
                 </button>
               {/if}
             </form>
+
             <label for="{$option.id}">
               <span>{$option.call_to_action_text}</span>
-              
               {if $option.logo}
                 <img src="{$option.logo}" loading="lazy">
               {/if}
@@ -61,104 +54,15 @@
 
           </div>
         </div>
-        <!-- เพิ่มฟอร์มหรือข้อมูลที่เกี่ยวข้องกับการจ่ายเงินที่นี่ -->
-          <input class="custom-radio float-xs-left" type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
-          <label for="html" style="display: inline-block; margin-right: 15px;">Bank transfer</label> <br>
-          <input class="custom-radio float-xs-left" type="radio" id="css" name="fav_language" value="QR" onclick="showQRCode()" style="display: inline-block; margin-right: 5px;">
-          <label for="css" style="display: inline-block; margin-right: 15px;">QR Code</label> <br>
-          <input class="custom-radio float-xs-left" type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptpayDetails()" style="display: inline-block;">
-          <label for="javascript" style="display: inline-block;">Promtpay</label> <br>
-          <input class="custom-radio float-xs-left" type="radio" id="javascript" name="fav_language" value="CounterService" onclick="showCounterServiceDetails()" style="display: inline-block;">
-          <label for="javascript" style="display: inline-block;">Counter service</label>
 
-          <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
-          <div id="bankDetails" style="display:none;">
-            <p>{l s='Bank details: Kbank 0448447561 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
+        {if $option.additionalInformation}
+          <div
+            id="{$option.id}-additional-information"
+            class="js-additional-information definition-list additional-information{if $option.id != $selected_payment_option} ps-hidden {/if}"
+          >
+            {$option.additionalInformation nofilter}
           </div>
-          <!-- แสดงข้อมูลของ QR Code เมื่อคลิกที่ "QR Code" -->
-          <div id="qrCodeDetails" style="display:none; text-align: center;">
-            <img src="https://th.bing.com/th/id/OIP.HHacbpUBSuYqZfXIWFn-IQHaHa?rs=1&pid=ImgDetMain" alt="QR Code Logo" style="width: 100px; border: 1px solid #ccc; padding: 5px;">
-          </div>
-          <!-- แสดงข้อมูลของพร้อมเพย์มื่อคลิกที่ "Promtpay" -->
-          <div id="promtpayDetails" style="display:none;">
-            <p>{l s='Promtpay: 0221115554 มหาวิทยาลัยขอนแก่น' d='Shop.Theme.Actions'}</p>
-          </div>
-          <!-- แสดงข้อมูลของพร้อมเพย์มื่อคลิกที่ "CounterService" -->
-
-          <div id="CounterServiceDetails" style="display:none;">
-            <div class="cart-summary-products js-cart-summary-products">
-              <p>{$cart.summary_string}</p>
-            
-              <p>
-                <a href="#" data-toggle="collapse" data-target="#cart-summary-product-list" class="js-show-details">
-                  {l s='show details' d='Shop.Theme.Actions'}
-                  <i class="material-icons">expand_more</i>
-                </a>
-              </p>
-              <img src="https://cdn.shopify.com/shopifycloud/help/assets/manual/sell-in-person/hardware/barcode-scanner/1d-barcode-4fbf513f48675746ba39d9ea5078f377e5e1bb9de2966336088af8394b893b78.png" alt="service" style="width:425px;height:100px;">
-              <img src="https://www.sosthailand.org/getmedia/1094cc58-3ae4-49df-a9dd-5cb345847d50/Counter-Service-7-Eleven-logo.png?width=570&height=365&ext=.png" alt="service-logo" style="width:67px;height:46px;">
-                  <br>
-              {block name='cart_summary_product_list'}
-                <div class="collapse" id="cart-summary-product-list">
-                  <ul class="media-list">
-                    {foreach from=$cart.products item=product}
-                      <li class="media">{include file='checkout/_partials/cart-summary-product-line.tpl' product=$product}</li>
-                    {/foreach}
-                  </ul>
-                </div>
-              {/block}
-            </div>
-        </form>
-        <!-- เพิ่มฟอร์มหรือข้อมูลเพิ่มเติมตามที่คุณต้องการ -->
-      </div>
-    <script>
-      function showQRCode() {
-        // แสดง QR Code เมื่อคลิกที่ "QR Code"
-        document.getElementById('qrCodeDetails').style.display = 'block';
-        // ซ่อนข้อมูลธนาคาร
-        document.getElementById('promtpayDetails').style.display = 'none';
-  
-        document.getElementById('bankDetails').style.display = 'none';
-        document.getElementById('CounterService').style.display = 'none';
-
-      }
-    
-      function showBankDetails() {
-        // แสดงข้อมูลธนาคารเมื่อคลิกที่ "ธนาคาร"
-        document.getElementById('bankDetails').style.display = 'block';
-        // ซ่อน QR Code
-        document.getElementById('qrCodeDetails').style.display = 'none';
-        //ซ่อน Promtpay
-        document.getElementById('promtpayDetails').style.display = 'none';
-        document.getElementById('CounterServiceDetails').style.display = 'none';
-
-      }
-      function showPromptpayDetails() {
-        // แสดงข้อมูลพร้อมเพย์เมื่อคลิกที่ "Promtpay"
-        document.getElementById('promtpayDetails').style.display = 'block';
-        // ซ่อน QR Code
-        document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
-        // ซ่อนข้อมูลธนาคาร
-        document.getElementById('CounterServiceDetails').style.display = 'none';
-
-      }
-      function showCounterServiceDetails() {
-        // แสดงข้อมูลเมื่อคลิกที่ "CounterService"
-        document.getElementById('CounterServiceDetails').style.display = 'block';
-        
-        // ซ่อน QR Code
-        document.getElementById('qrCodeDetails').style.display = 'none';
-        
-        // ซ่อนข้อมูลธนาคาร
-        document.getElementById('bankDetails').style.display = 'none';
-        
-        // ซ่อนข้อมูลพร้อมเพย์
-        document.getElementById('promtpayDetails').style.display = 'none';
-    }
-    
-
-    </script>
-        
+        {/if}
 
         <div
           id="pay-with-{$option.id}-form"
@@ -222,15 +126,18 @@
   {if $show_final_summary}
     {include file='checkout/_partials/order-final-summary.tpl'}
   {/if}
-  <div class="form-group">
-    <label for="slipFile" class="col-sm-3 col-form-label">{l s='' d='Shop.Theme.Actions'}</label><br>
-    <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
-  </div>
-  
+  <div class="modal-body">
+    <!-- เพิ่มฟอร์มอัพโหลดสลิป -->
+    <form method="post"action="http://localhost:8080/en/order-confirmation?id_cart=66&id_module=27&id_order=56&key=abf13a7968f4a5c64810f10d52605de8" onsubmit="showAlert()">
+      <div class="form-group">
+          <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
+      </div>
+  </form>          
+</div>
   <div id="payment-confirmation" class="js-payment-confirmation">
     <div class="ps-shown-by-js">
       <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
-        {l s='Upload' d='Shop.Theme.Checkout'}
+        {l s='Place order' d='Shop.Theme.Checkout'}
       </button>
       {if $show_final_summary}
         <article class="alert alert-danger mt-2 js-alert-payment-conditions" role="alert" data-alert="danger">
@@ -253,50 +160,119 @@
       {/if}
     </div>
   </div>
-  
-  {hook h='displayPaymentByBinaries'}
 
+  {hook h='displayPaymentByBinaries'}
+  <div class="modal-footer">
+    <!-- เพิ่มปุ่มหรือลิงค์ที่ต้องการให้ผู้ใช้ทำการจ่ายเงิน -->
+             <div class="form-group">
+             </div>
+         </form>          
+       </div>
+     </div>
+   </div>
+   
+       </div>
+     </div>
+   </div>
+ </div>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+ <script>
+     function showAlert() {
+         Swal.fire({
+             title: "Payment successful!",
+             text: "Thank you for your support.",
+             icon: "success"
+         });
+ 
+         // รอ 2 วินาที (2000 milliseconds) ก่อนที่จะส่งข้อมูลแบบฟอร์ม
+         setTimeout(function () {
+             document.getElementById('yourFormId').submit();
+         }, 2000);
+     }
+ </script>
+ 
 <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 <script>
-  document.getElementById('slipFile').addEventListener('change', function() {
-    var file = this.files[0];
-    if (file) {
-      var fileName = file.name;
-      var fileType = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
-      if (fileType === 'jpg' || fileType === 'png') {
-        var reader = new FileReader();
-        reader.onload = function(event) {
-          var img = new Image();
-          img.onload = function() {
-            var canvas = document.createElement('canvas');
-            var context = canvas.getContext('2d');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            context.drawImage(img, 0, 0);
-            var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-            
-            // ใช้ jsQR เพื่อแยก QR code ออกมา
-            var code = jsQR(imageData.data, imageData.width, imageData.height);
-            
-            if (code) {
-              // กระทำเพิ่มเติมเมื่อพบ QR code
-            } else {
-              alert('ไม่ใช่สลิป กรุณาอัพโหลดใหม่อีกครั้ง');
-              document.getElementById('slipFile').value = "";
-              // กระทำเพิ่มเติมเมื่อไม่พบ QR code
-            }
-          };
-          img.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert("ไฟล์ที่เลือกต้องเป็นรูปภาพเท่านั้น (.jpg หรือ .png)");
-        document.getElementById('slipFile').value = "";
-      }
-    }
-  });
+ document.getElementById('slipFile').addEventListener('change', function() {
+   var file = this.files[0];
+   if (file) {
+     var fileName = file.name;
+     var fileType = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
+     if (fileType === 'jpg' || fileType === 'png') {
+       var reader = new FileReader();
+       reader.onload = function(event) {
+         var img = new Image();
+         img.onload = function() {
+           var canvas = document.createElement('canvas');
+           var context = canvas.getContext('2d');
+           canvas.width = img.width;
+           canvas.height = img.height;
+           context.drawImage(img, 0, 0);
+           var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+           
+           // ใช้ jsQR เพื่อแยก QR code ออกมา
+           var code = jsQR(imageData.data, imageData.width, imageData.height);
+           
+           if (code) {
+             // กระทำเพิ่มเติมเมื่อพบ QR code
+           } else {
+             Swal.fire({
+               icon: "error",
+               title: "Oops...",
+               text: "Not Slip Try again!",
+             });
+             document.getElementById('slipFile').value = "";
+             // กระทำเพิ่มเติมเมื่อไม่พบ QR code
+           }
+         };
+         img.src = event.target.result;
+       };
+       reader.readAsDataURL(file);
+     } else {
+       alert("ไฟล์ที่เลือกต้องเป็นรูปภาพเท่านั้น (.jpg หรือ .png)");
+       document.getElementById('slipFile').value = "";
+     }
+   }
+ });
 </script>
+<script>
+ function showQRCode() {
+   // แสดง QR Code เมื่อคลิกที่ "QR Code"
+   document.getElementById('qrCodeDetails').style.display = 'block';
+   // ซ่อนข้อมูลธนาคาร
+   document.getElementById('promtpayDetails').style.display = 'none';
+   
+   document.getElementById('bankDetails').style.display = 'none';
+   document.getElementById('CounterServiceDetails').style.display = 'none';
+ }
+
+ function showBankDetails() {
+   // แสดงข้อมูลธนาคารเมื่อคลิกที่ "ธนาคาร"
+   document.getElementById('bankDetails').style.display = 'block';
+   // ซ่อน QR Code
+   document.getElementById('qrCodeDetails').style.display = 'none';
+   //ซ่อน Promtpay
+   document.getElementById('promtpayDetails').style.display = 'none';
+   document.getElementById('CounterServiceDetails').style.display = 'none';
+ }
+ function showPromptpayDetails() {
+   // แสดงข้อมูลพร้อมเพย์เมื่อคลิกที่ "Promtpay"
+   document.getElementById('promtpayDetails').style.display = 'block';
+   // ซ่อน QR Code
+   document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
+   // ซ่อนข้อมูลธนาคาร
+   document.getElementById('CounterServiceDetails').style.display = 'none';
+ }
+ function showCounterServiceDetails() {
+   // Hide other payment details
+   document.getElementById('promtpayDetails').style.display = 'none';
+   document.getElementById('qrCodeDetails').style.display = 'none';
+   document.getElementById('bankDetails').style.display = 'none';
+   // Show Counter Service details
+   document.getElementById('CounterServiceDetails').style.display = 'block';
+ }
 
 
-
+</script>
 {/block}

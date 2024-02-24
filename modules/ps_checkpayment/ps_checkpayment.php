@@ -61,7 +61,7 @@ class Ps_Checkpayment extends PaymentModule
         $this->bootstrap = true;
         parent::__construct();
 
-        $this->displayName = $this->trans('Payments by check', [], 'Modules.Checkpayment.Admin');
+        $this->displayName = $this->trans('Prompt pay', [], 'Modules.Checkpayment.Admin');
         $this->description = $this->trans('Display contact details blocks to make it easy for customers to pay by check on your store.', [], 'Modules.Checkpayment.Admin');
         $this->confirmUninstall = $this->trans('Are you sure you want to delete these details?', [], 'Modules.Checkpayment.Admin');
         $this->ps_versions_compliancy = ['min' => '1.7.6.0', 'max' => _PS_VERSION_];
@@ -157,7 +157,7 @@ class Ps_Checkpayment extends PaymentModule
 
         $newOption = new PaymentOption();
         $newOption->setModuleName($this->name)
-            ->setCallToActionText($this->trans('Pay by Check', [], 'Modules.Checkpayment.Admin'))
+            ->setCallToActionText($this->trans('Bank Tranfer', [], 'Modules.Checkpayment.Admin'))
             ->setAction($this->context->link->getModuleLink($this->name, 'validation', [], true))
             ->setAdditionalInformation($this->fetch('module:ps_checkpayment/views/templates/front/payment_infos.tpl'));
 

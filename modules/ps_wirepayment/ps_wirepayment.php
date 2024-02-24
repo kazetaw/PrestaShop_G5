@@ -195,7 +195,7 @@ class Ps_Wirepayment extends PaymentModule
 
         $newOption = new PaymentOption();
         $newOption->setModuleName($this->name)
-                ->setCallToActionText($this->trans('', [], 'Modules.Wirepayment.Shop'))
+                ->setCallToActionText($this->trans('Counter Service', [], 'Modules.Wirepayment.Shop'))
                 ->setAction($this->context->link->getModuleLink($this->name, 'validation', [], true))
                 ->setAdditionalInformation($this->fetch('module:ps_wirepayment/views/templates/hook/ps_wirepayment_intro.tpl'));
         $payment_options = [
