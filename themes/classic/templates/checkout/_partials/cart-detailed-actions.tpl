@@ -25,7 +25,24 @@
   *}
 
 {literal}
+<style>
+  input[type="radio"] {
 
+  }
+
+  input[type="radio"]:checked {
+  }
+  .custom-radio input[type=radio]:checked+span {
+    position: absolute;
+    top: .125rem;
+    left: .125rem;
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: #24b9d7;
+    border-radius: 50%;
+  }
+</style>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.1"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -159,6 +176,7 @@ function performOCR(file) {
             <input type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
             <span transferpan class="checkmark"></span>            <label for="html" style="display: inline-block; margin-right: 15px;">Bank transfer</label>
             <input type="radio" id="css" name="fav_language" value="QR" onclick="showQRCode()" style="display: inline-block; margin-right: 5px;">
+            <span></span>
             <label for="css" style="display: inline-block; margin-right: 15px;">QR Code</label>
             <input type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptpayDetails()" style="display: inline-block;">
             <label for="javascript" style="display: inline-block;">Promtpay</label>
@@ -190,10 +208,15 @@ function performOCR(file) {
             <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
             <div id="bankDetails" style="display:none;">
               <p>{l s='Bank details: Kbank 0448447561 college of computing kku' d='Shop.Theme.Actions'}</p>
+              
             </div>
             <!-- แสดงข้อมูลของ QR Code เมื่อคลิกที่ "QR Code" -->
             <div id="qrCodeDetails" style="display:none; text-align: center;">
-              <img src="https://th.bing.com/th/id/OIP.HHacbpUBSuYqZfXIWFn-IQHaHa?rs=1&pid=ImgDetMain" alt="QR Code Logo" style="width: 100px; border: 1px solid #ccc; padding: 5px;">
+             <br>
+              <img src="\themes\classic\templates\checkout\_partials\steps\qr\promptpay.png" alt="QR" width="100" height="100">
+            <br>
+              <div>
+                
             </div>
             <!-- แสดงข้อมูลของพร้อมเพย์มื่อคลิกที่ "Promtpay" -->
             <div id="promtpayDetails" style="display:none;">
