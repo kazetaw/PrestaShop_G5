@@ -27,20 +27,11 @@
 {literal}
 <style>
   input[type="radio"] {
-
   }
 
   input[type="radio"]:checked {
   }
-  .custom-radio input[type=radio]:checked+span {
-    position: absolute;
-    top: .125rem;
-    left: .125rem;
-    display: block;
-    width: 12px;
-    height: 12px;
-    background-color: #24b9d7;
-    border-radius: 50%;
+
   }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.1"></script>
