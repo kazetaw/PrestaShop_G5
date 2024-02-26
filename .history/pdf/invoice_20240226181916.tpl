@@ -30,9 +30,8 @@
 	<!-- Invoicing -->
 	<tr>
 		<td colspan="12">
+
 			{$addresses_tab}
-			<tr>
-</tr>
 
 		</td>
 	</tr>
@@ -44,6 +43,7 @@
 	<!-- TVA Info -->
 	<tr>
 		<td colspan="12">
+
 			{$summary_tab}
 
 		</td>

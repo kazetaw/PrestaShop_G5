@@ -30,8 +30,15 @@
 	<!-- Invoicing -->
 	<tr>
 		<td colspan="12">
+
 			{$addresses_tab}
 			<tr>
+     <td colspan="12">
+        <p>College of Computing Khon Kaen University.
+        123 Vidhayavibaj Building
+        Mitraparp road Muang District,
+        Khon Kaen 40002</p>
+    </td>
 </tr>
 
 		</td>
@@ -44,6 +51,7 @@
 	<!-- TVA Info -->
 	<tr>
 		<td colspan="12">
+
 			{$summary_tab}
 
 		</td>

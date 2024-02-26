@@ -24,15 +24,24 @@
  *}
 
 {$style_tab}
+<!-- New Address Tab -->
+<tr>
+    <td colspan="12">
+        <p>College of Computing Khon Kaen University.</p>
+        <p>123 Vidhayavibaj Building,</p>
+        <p>Mitraparp road Muang District,</p>
+        <p>Khon Kaen 40002</p>
+    </td>
+</tr>
 
 
 <table width="100%" id="body" border="0" cellpadding="0" cellspacing="0" style="margin:0;">
 	<!-- Invoicing -->
 	<tr>
 		<td colspan="12">
+
 			{$addresses_tab}
-			<tr>
-</tr>
+
 
 		</td>
 	</tr>
@@ -44,6 +53,7 @@
 	<!-- TVA Info -->
 	<tr>
 		<td colspan="12">
+
 			{$summary_tab}
 
 		</td>

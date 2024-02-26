@@ -28,9 +28,9 @@
 				{$invoice_address}
 		</td>
 		<td width="50%" style="display: flex; align-items: center;">
-		<p><strong><span style="font-size: 14px;">Company</span></strong></p>
+		<p><strong><span style="font-size: 18px;">Company</span></strong></p>
 		<p>College of Computing Khon Kaen University.<br>
-		123 Vidhayavibaj Building, Mitraparp road Muang District, Khon Kaen 40002 <br>
+		123 Vidhayavibaj Building, Mitraparp road Muang District,Khon Kaen 40002 <br>
 		Tax identification number: 0000000000000<br>
 		Email : computing.kku@kku.ac.th<br>
 		Tel. 043-009700</p>

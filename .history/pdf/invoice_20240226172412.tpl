@@ -31,7 +31,15 @@
 	<tr>
 		<td colspan="12">
 			{$addresses_tab}
-			<tr>
+			</td>
+    <td colspan="16">
+	 <div style="text-align: right; display: inline-block;">
+        <p>Company<br> College of Computing Khon Kaen University.<br>123 Vidhayavibaj Building, Mitraparp road Muang District,<br>Khon Kaen 40002 <br>
+		Tax identification number: 0000000000000<br>
+		Email : computing.kku@kku.ac.th<br>
+		Tel. 043-009700</p>
+		</div>
+    </td>
 </tr>
 
 		</td>

@@ -30,9 +30,15 @@
 	<!-- Invoicing -->
 	<tr>
 		<td colspan="12">
+
 			{$addresses_tab}
 			<tr>
-</tr>
+			<td colspan="12">
+			<p>เลขที่ 123 ถนน อาคาร เขต/อำเภอ จังหวัด รหัสไปรษณีย์</p>
+			</td>
+			</tr>
+
+			
 
 		</td>
 	</tr>
@@ -44,6 +50,7 @@
 	<!-- TVA Info -->
 	<tr>
 		<td colspan="12">
+
 			{$summary_tab}
 
 		</td>

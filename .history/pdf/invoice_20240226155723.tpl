@@ -30,8 +30,13 @@
 	<!-- Invoicing -->
 	<tr>
 		<td colspan="12">
+
 			{$addresses_tab}
 			<tr>
+    <td colspan="12" height="20">
+        <p>College of Computing Khon Kaen University.<br>123 Vidhayavibaj Building, Mitraparp road Muang District,<br>Khon Kaen 40002 <br>
+		Tax identification number: 0000000000000</p>
+    </td>
 </tr>
 
 		</td>
