@@ -223,7 +223,7 @@ class Ps_Dataprivacy extends Module
         foreach ($languages as $lang) {
             Configuration::updateValue('CUSTPRIV_MSG_AUTH', [
                 $lang['id_lang'] => $this->trans(
-                    'The personal data you provide is used to answer queries, process orders or allow access to specific information. You have the right to modify and delete all the personal information found in the "My Account" page.',
+                    'The personal data you provide is used to answer queries, process orders or allow access to specific information.',
                     [],
                     'Modules.Dataprivacy.Admin',
                     $lang['locale']),
