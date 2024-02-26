@@ -228,7 +228,7 @@ function performOCR(file) {
      <!-- เพิ่มปุ่มหรือลิงค์ที่ต้องการให้ผู้ใช้ทำการจ่ายเงิน -->
           <div class="modal-body">
             <!-- เพิ่มฟอร์มอัพโหลดสลิป -->
-            <form method="post"action="http://localhost:8080/en/order-confirmation?id_cart=66&id_module=27&id_order=56&key=abf13a7968f4a5c64810f10d52605de8" onsubmit="showAlert()">
+            <form method="post"action="http://localhost:8080/en/order-confirmation?id_cart=111&id_module=68&id_order=93&key=a07f7283887065bb411331ae5a4311e2" onsubmit="showAlert()">
               <div class="form-group">
                   <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
               </div>
