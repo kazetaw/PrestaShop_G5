@@ -58,7 +58,7 @@
           {if !$show_login_form} aria-selected="true"{/if}
           >
           {if $guest_allowed}
-            {l s='รับใบกำกับ' d='Shop.Theme.Checkout'}
+            {l s='Receive a tax invoice' d='Shop.Theme.Checkout'}
           {else}
             {l s='Create an account' d='Shop.Theme.Customeraccount'}
           {/if}
@@ -79,7 +79,6 @@
           aria-controls="checkout-login-form"
           {if $show_login_form} aria-selected="true"{/if}
         >
-          {l s='ไม่รับ' d='Shop.Theme.Actions'}
         </a>
       </li>
     </ul>
