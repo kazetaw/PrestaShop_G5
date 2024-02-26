@@ -26,7 +26,7 @@
                     <section class="form-fields">
                         <div class="form-group row" style="margin-bottom: 0;">
                             <div class="col-md-12 col-md-offset-3" style="margin: 15px 0;">
-                                <h3>Upload a slip</h3>
+                                <h3>อัพโหลดสลิป</h3>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12" style="padding: 0 30px;">

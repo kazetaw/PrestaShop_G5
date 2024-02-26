@@ -25,6 +25,7 @@
   *}
 
 {literal}
+
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.1"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -156,7 +157,7 @@ function performOCR(file) {
           <form action="/action_page.php">
             <p>Payment methods:</p>
             <input type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
-            <label for="html" style="display: inline-block; margin-right: 15px;">Bank transfer</label>
+            <span transferpan class="checkmark"></span>            <label for="html" style="display: inline-block; margin-right: 15px;">Bank transfer</label>
             <input type="radio" id="css" name="fav_language" value="QR" onclick="showQRCode()" style="display: inline-block; margin-right: 5px;">
             <label for="css" style="display: inline-block; margin-right: 15px;">QR Code</label>
             <input type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptpayDetails()" style="display: inline-block;">
@@ -217,8 +218,10 @@ function performOCR(file) {
               <div class="form-group">
                   <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
               </div>
-              <button type="submit" class="btn btn-primary">Upload</button>
-          </form>          
+              <button type="submit" class="btn btn-primary">
+                {l s='Place order' d='Shop.Theme.Checkout'}
+              </button>
+            </form>          
         </div>
       </div>
     </div>

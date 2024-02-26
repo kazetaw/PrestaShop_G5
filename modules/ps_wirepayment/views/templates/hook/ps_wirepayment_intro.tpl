@@ -19,7 +19,10 @@
 
 <section>
   <p>
-    {l s='0448447561 kbank KKU' d='Modules.Wirepayment.Shop'}
+    {l s='' d='Modules.Wirepayment.Shop'}
+    <img src="https://cdn.shopify.com/shopifycloud/help/assets/manual/sell-in-person/hardware/barcode-scanner/1d-barcode-4fbf513f48675746ba39d9ea5078f377e5e1bb9de2966336088af8394b893b78.png" alt="service" style="width:425px;height:100px;">
+    <img src="https://www.sosthailand.org/getmedia/1094cc58-3ae4-49df-a9dd-5cb345847d50/Counter-Service-7-Eleven-logo.png?width=570&height=365&ext=.png" alt="service-logo" style="width:67px;height:46px;">
+        <br>
     {if $bankwireReservationDays}
       {l s='Goods will be reserved %s days for you and we\'ll process the order immediately after receiving the payment.' sprintf=[$bankwireReservationDays] d='Modules.Wirepayment.Shop'}
     {/if}

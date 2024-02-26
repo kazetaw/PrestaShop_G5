@@ -39,8 +39,8 @@
         {/foreach}
       {/block}
       <div class="forgot-password">
-        <a href="{$urls.pages.password}" rel="nofollow">
-          {l s='Forgot your password?' d='Shop.Theme.Customeraccount'}
+        <a href="{$urls.pages.password}" rel="nofollow" >
+          {l s='ลืม your password?' d='Shop.Theme.Customeraccount'}
         </a>
       </div>
     </div>
