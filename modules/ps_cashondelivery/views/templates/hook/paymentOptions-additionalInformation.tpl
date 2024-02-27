@@ -18,6 +18,6 @@
  *}
 
 <section id="ps_cashondelivery-paymentOptions-additionalInformation">
-  <p>{l s='0888888888 Promtpay' d='Modules.Cashondelivery.Shop'}</p>
+  <p>{l s='0888888888 khon kaen university' d='Modules.Cashondelivery.Shop'}</p>
 
 </section>

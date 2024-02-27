@@ -38,6 +38,10 @@
     <span class="d-block js-terms">{$tos_cms nofilter}</span>
   {/if}
   {block name='copyright_link'}
-    {l s='%copyright% %year% - Ecommerce software by %prestashop%' sprintf=['%prestashop%' => 'PrestaShop™', '%year%' => 'Y'|date, '%copyright%' => '©'] d='Shop.Theme.Global'}
-  {/block}
+    {l s=' Computer College 123 Mitraphap Road, Nai Mueang Subdistrict, <br><br>
+    Mueang District, Khon Kaen Province 40002 Tel. 043-009700  <br><br>' sprintf=['%prestashop%' => 'PrestaShop™', '%year%' => 'Y'|date, '%copyright%' => '©'] d='Shop.Theme.Global'}
+    <a href="https://www.facebook.com/groups/154019547977570" target="_blank" rel="noopener noreferrer nofollow">
+      {l s='College of Computing Khon Kaen University'}
+    </a>
+    {/block}
 </div>
