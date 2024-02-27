@@ -6,8 +6,6 @@ COPY ./themes ./themes
 
 COPY ./img ./img
 
-COPY ./template ./template
-
 COPY ./classes ./classes
 
 COPY ./controllers ./controllers

@@ -25,15 +25,6 @@
   *}
 
 {literal}
-<style>
-  input[type="radio"] {
-  }
-
-  input[type="radio"]:checked {
-  }
-
-  }
-</style>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.1"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -165,14 +156,14 @@ function performOCR(file) {
           <form action="/action_page.php">
             <p>Payment methods:</p>
             <input type="radio" id="html" name="fav_language" value="Bank" onclick="showBankDetails()" style="display: inline-block; margin-right: 5px;">
-            <span transferpan class="checkmark"></span>            <label for="html" style="display: inline-block; margin-right: 15px;">Bank transfer</label>
+            <label for="html" style="display: inline-block; margin-right: 15px;">Bank transfer</label>
             <input type="radio" id="css" name="fav_language" value="QR" onclick="showQRCode()" style="display: inline-block; margin-right: 5px;">
-            <span></span>
             <label for="css" style="display: inline-block; margin-right: 15px;">QR Code</label>
+            <input type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptpayDetails()" style="display: inline-block;">
+            <label for="javascript" style="display: inline-block;">Promtpay</label>
             <input type="radio" id="counterService" name="fav_language" value="CounterService" onclick="showCounterServiceDetails()" style="display: inline-block;">
             <label for="counterService" style="display: inline-block;">Counter Service</label>
-            <input type="radio" id="promptpay" name="fav_language" value="CounterService" onclick="showCounterServiceDetails()" style="display: inline-block;">
-            <label for="counterService" style="display: inline-block;">Promtpay</label>
+            
             <div id="CounterServiceDetails" style="display:none;">
               <p>{l s='' d='Shop.Theme.Actions'}</p>
               <div class="cart-overview js-cart" data-refresh-url="{url entity='cart' params=['ajax' => true, 'action' => 'refresh']}">
@@ -197,20 +188,15 @@ function performOCR(file) {
             </div>
             <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
             <div id="bankDetails" style="display:none;">
-              <img src="\themes\classic\templates\checkout\_partials\steps\qr/Screenshot 2024-02-27 180233.png" alt="QR" width="500" height="">
-              
+              <img src="\themes\classic\templates\checkout\_partials\steps\qr/Screenshot 2024-02-27 180233.png" alt="QR Code Logo" style="width: 500px;">
             </div>
             <!-- แสดงข้อมูลของ QR Code เมื่อคลิกที่ "QR Code" -->
             <div id="qrCodeDetails" style="display:none; text-align: center;">
-             <br>
-              <img src="\themes\classic\templates\checkout\_partials\steps\qr\promptpay.png" alt="QR" width="100" height="100">
-            <br>
-              <div>
-                
+              <img src="\themes\classic\templates\checkout\_partials\steps\qr\promptpay.png" alt="QR Code Logo" style="width: 100px; border: 1px solid #ccc; padding: 5px;">
             </div>
             <!-- แสดงข้อมูลของพร้อมเพย์มื่อคลิกที่ "Promtpay" -->
-            <div id="PromtpayDetails" style="display:none;">
-              <p>{l s='0888888888 khon kaen university' d='Shop.Theme.Actions'}</p>
+            <div id="promtpayDetails" style="display:none;">
+              <p>{l s='Promtpay: 0221115554 college of computing kku' d='Shop.Theme.Actions'}</p>
             </div>
 
             <div id="CounterServiceDetails" style="display:none;">
@@ -227,15 +213,12 @@ function performOCR(file) {
      <!-- เพิ่มปุ่มหรือลิงค์ที่ต้องการให้ผู้ใช้ทำการจ่ายเงิน -->
           <div class="modal-body">
             <!-- เพิ่มฟอร์มอัพโหลดสลิป -->
-            <form method="post"action="http://localhost:8080/en/order-confirmation?id_cart=111&id_module=68&id_order=93&key=a07f7283887065bb411331ae5a4311e2" onsubmit="showAlert()">
+            <form method="post"action="http://localhost:8080/en/order-confirmation?id_cart=66&id_module=27&id_order=56&key=abf13a7968f4a5c64810f10d52605de8" onsubmit="showAlert()">
               <div class="form-group">
                   <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
               </div>
-              
-              <button type="submit" class="btn btn-primary">
-                {l s='Place order' d='Shop.Theme.Checkout'}
-              </button>
-            </form>          
+              <button type="submit" class="btn btn-primary">Upload</button>
+          </form>          
         </div>
       </div>
     </div>
@@ -325,6 +308,22 @@ function performOCR(file) {
     document.getElementById('promtpayDetails').style.display = 'none';
     document.getElementById('CounterServiceDetails').style.display = 'none';
   }
+  function showPromptpayDetails() {
+    // แสดงข้อมูลพร้อมเพย์เมื่อคลิกที่ "Promtpay"
+    document.getElementById('promtpayDetails').style.display = 'block';
+    // ซ่อน QR Code
+    document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
+    // ซ่อนข้อมูลธนาคาร
+    document.getElementById('CounterServiceDetails').style.display = 'none';
+  }
+  function showCounterServiceDetails() {
+    // Hide other payment details
+    document.getElementById('promtpayDetails').style.display = 'none';
+    document.getElementById('qrCodeDetails').style.display = 'none';
+    document.getElementById('bankDetails').style.display = 'none';
+    // Show Counter Service details
+    document.getElementById('CounterServiceDetails').style.display = 'block';
+  }
   function showCounterServiceDetails() {
     // แสดงข้อมูลเมื่อคลิกที่ "CounterService"
     document.getElementById('CounterServiceDetails').style.display = 'block';
@@ -338,6 +337,7 @@ function performOCR(file) {
     // ซ่อนข้อมูลพร้อมเพย์
     document.getElementById('promtpayDetails').style.display = 'none';
 }
+
 
 </script>
 
