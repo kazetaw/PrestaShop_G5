@@ -232,6 +232,7 @@ function performOCR(file) {
               <div class="form-group">
                   <input type="file" class="form-control-file" id="slipFile" name="slipFile" accept=".png, .jpg" required>
               </div>
+              
               <button type="submit" class="btn btn-primary">
                 {l s='Place order' d='Shop.Theme.Checkout'}
               </button>
