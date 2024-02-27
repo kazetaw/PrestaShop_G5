@@ -24,27 +24,17 @@
  *}
 
 
-<table style="width: 100%">
+<table style="width: 100%; border-collapse: collapse;">
     <tr>
-        <td style="width: 100%; text-align: center;">
-            <span style="font-weight: bold; font-size: 14pt; color: #444;">TAX INVOICE</span>
+        <td style="text-align: left; width: 35%;">
+            <img src="https://upload.wikimedia.org/wikipedia/th/thumb/c/ce/Computing_KKU.svg/640px-Computing_KKU.svg.png?width=570&height=365&ext=.png" alt="service-logo" style="width:130px;height:60px;">
         </td>
-    </tr>
-    <tr>
-        <td style="width: 25%; text-align: center;">
-            {if $logo_path}
-                <img src="{$logo_path}" style="width:{$width_logo}px; height:{$height_logo}px;" />
-            {/if}
-        </td>
-        <td style="width: 50%; text-align: center;">
-            <table style="width: 100%">
-                <tr>
-                    <td style="font-size: 14pt; color: #9E9F9E; text-align: center;">{$date|escape:'html':'UTF-8'}</td>
-                </tr>
-                <tr>
-                    <td style="font-size: 14pt; color: #9E9F9E; text-align: center;">{$title|escape:'html':'UTF-8'}</td>
-                </tr>
-            </table>
+        <td style="text-align: right; width: 65%;">
+<span style="font-weight: bold; font-size: 14pt; color: #444;">TAX INVOICE</span><br>
+<span style="font-size: 14pt; color: #9E9F9E;">{$date|escape:'html':'UTF-8'}</span><br>
+<span style="font-size: 14pt; color: #9E9F9E;">{$title|escape:'html':'UTF-8'}</span>
         </td>
     </tr>
 </table>
+
+
