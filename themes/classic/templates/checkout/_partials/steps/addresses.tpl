@@ -130,8 +130,12 @@
           <input type="hidden" id="not-valid-addresses" class="js-not-valid-addresses" value="{$not_valid_addresses}">
         </div>
       {/if}
-
+      
+        
+    
     </form>
+    
+    
     {hook h='displayAddressSelectorBottom'}
   </div>
 {/block}

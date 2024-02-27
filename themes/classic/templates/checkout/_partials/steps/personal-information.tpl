@@ -56,9 +56,7 @@
         </a>
       </li>
 
-      <li class="nav-item">
-        <span class="nav-separator"> | </span>
-      </li>
+      
 
     </ul>
 
@@ -71,4 +69,5 @@
 
 
   {/if}
+  
 {/block}
