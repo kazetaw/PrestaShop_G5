@@ -24,11 +24,11 @@
  *}
 
 <section>
-  <p>{l s='ช่องทางผ่านธนาคาร' d='Modules.Checkpayment.Shop'}
+  <p>{l s='' d='Modules.Checkpayment.Shop'}
     <dl>
       <dt>{l s='Bank name' d='Modules.Checkpayment.Shop'}</dt>
       <dt>{l s='KBank' d='Modules.Checkpayment.Shop'}</dt> 
-      <dt>{l s='ประเภทธนาคาร' d='Modules.Checkpayment.Shop'}</dt> 
+      <dt>{l s='Bank account type' d='Modules.Checkpayment.Shop'}</dt> 
       <dt>{l s='Saving' d='Modules.Checkpayment.Shop'}</dt> 
       <dt>{l s='Account No.' d='Modules.Checkpayment.Shop'}</dt> <br>
       <dt>{l s='0448447561' d='Modules.Checkpayment.Shop'}</dt>

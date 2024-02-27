@@ -19,7 +19,7 @@
 
 <section>
   <p>
-    {l s='สแกน QR เพื่อโอนเข้าบัญชี' d='Modules.Wirepayment.Shop'} <br><br>
+    {l s='Scan QR to transfer into account' d='Modules.Wirepayment.Shop'} <br><br>
     <img src="\themes\classic\templates\checkout\_partials\steps\qr\promptpay.png" alt="service" style="width:100px;height:100px;">
         <br>
     {if $bankwireReservationDays}
