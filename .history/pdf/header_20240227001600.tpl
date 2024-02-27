@@ -31,12 +31,12 @@
         </td>
     </tr>
     <tr>
-        <td style="width: 25%; text-align: center;">
+        <td style="width: 100%; text-align: center;">
             {if $logo_path}
                 <img src="{$logo_path}" style="width:{$width_logo}px; height:{$height_logo}px;" />
             {/if}
         </td>
-        <td style="width: 50%; text-align: center;">
+        <td style="width: 100%; text-align: center;">
             <table style="width: 100%">
                 <tr>
                     <td style="font-size: 14pt; color: #9E9F9E; text-align: center;">{$date|escape:'html':'UTF-8'}</td>
