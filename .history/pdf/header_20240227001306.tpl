@@ -23,28 +23,57 @@
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  *}
 
-
-<table style="width: 100%">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAX INVOICE</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    td {
+        padding: 10px;
+        text-align: center;
+    }
+    .bold {
+        font-weight: bold;
+    }
+    .large {
+        font-size: 14pt;
+    }
+    .gray {
+        color: #9E9F9E;
+    }
+</style>
+</head>
+<body>
+<table>
+<tr>
+    <td style="font-weight: bold; font-size: 14pt; color: #444; width: 100%; text-align: center;">TAX INVOICE</td>
+</tr>
     <tr>
-        <td style="width: 100%; text-align: center;">
-            <span style="font-weight: bold; font-size: 14pt; color: #444;">TAX INVOICE</span>
-        </td>
-    </tr>
-    <tr>
-        <td style="width: 25%; text-align: center;">
+        <td style="width: 50%;">
             {if $logo_path}
                 <img src="{$logo_path}" style="width:{$width_logo}px; height:{$height_logo}px;" />
             {/if}
         </td>
-        <td style="width: 50%; text-align: center;">
+        <td style="width: 50%;">
             <table style="width: 100%">
-                <tr>
-                    <td style="font-size: 14pt; color: #9E9F9E; text-align: center;">{$date|escape:'html':'UTF-8'}</td>
-                </tr>
-                <tr>
-                    <td style="font-size: 14pt; color: #9E9F9E; text-align: center;">{$title|escape:'html':'UTF-8'}</td>
-                </tr>
+               <tr>
+    <td style="font-size: 14pt; color: #9E9F9E; text-align: center;">{$date|escape:'html':'UTF-8'}</td>
+</tr>
+<tr>
+    <td style="font-size: 14pt; color: #9E9F9E; text-align: center;">{$title|escape:'html':'UTF-8'}</td>
+</tr>
             </table>
         </td>
     </tr>
 </table>
+</body>
+</html>

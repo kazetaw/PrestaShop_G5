@@ -22,29 +22,25 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  *}
-
-
-<table style="width: 100%">
-    <tr>
-        <td style="width: 100%; text-align: center;">
-            <span style="font-weight: bold; font-size: 14pt; color: #444;">TAX INVOICE</span>
-        </td>
-    </tr>
-    <tr>
-        <td style="width: 25%; text-align: center;">
-            {if $logo_path}
-                <img src="{$logo_path}" style="width:{$width_logo}px; height:{$height_logo}px;" />
-            {/if}
-        </td>
-        <td style="width: 50%; text-align: center;">
-            <table style="width: 100%">
-                <tr>
-                    <td style="font-size: 14pt; color: #9E9F9E; text-align: center;">{$date|escape:'html':'UTF-8'}</td>
-                </tr>
-                <tr>
-                    <td style="font-size: 14pt; color: #9E9F9E; text-align: center;">{$title|escape:'html':'UTF-8'}</td>
-                </tr>
-            </table>
-        </td>
-    </tr>
+<table id="summary-tab" width="100%">
+	<tr>
+		
+		<th class="header small" valign="middle">{l s='Invoice Date' d='Shop.Pdf' pdf='true'}</th>
+		<th class="header small" valign="middle">{l s='Order Reference' d='Shop.Pdf' pdf='true'}</th>
+		<th class="header small" valign="middle">{l s='Order date' d='Shop.Pdf' pdf='true'}</th>
+		{if $addresses.invoice->vat_number}
+			<th class="header small" valign="middle">{l s='VAT Number' d='Shop.Pdf' pdf='true'}</th>
+		{/if}
+	</tr>
+	<tr>
+		<td class="center small white">{$title|escape:'html':'UTF-8'}</td>
+		<td class="center small white">{dateFormat date=$order->invoice_date full=0}</td>
+		<td class="center small white">{$order->getUniqReference()}</td>
+		<td class="center small white">{dateFormat date=$order->date_add full=0}</td>
+		{if $addresses.invoice->vat_number}
+			<td class="center small white">
+				{$addresses.invoice->vat_number}
+			</td>
+		{/if}
+	</tr>
 </table>

@@ -31,7 +31,7 @@
         </td>
     </tr>
     <tr>
-        <td style="width: 25%; text-align: center;">
+        <td style="width: 50%; text-align: center;">
             {if $logo_path}
                 <img src="{$logo_path}" style="width:{$width_logo}px; height:{$height_logo}px;" />
             {/if}
