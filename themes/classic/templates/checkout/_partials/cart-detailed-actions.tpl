@@ -169,11 +169,10 @@ function performOCR(file) {
             <input type="radio" id="css" name="fav_language" value="QR" onclick="showQRCode()" style="display: inline-block; margin-right: 5px;">
             <span></span>
             <label for="css" style="display: inline-block; margin-right: 15px;">QR Code</label>
-            <input type="radio" id="javascript" name="fav_language" value="Promtpay" onclick="showPromptpayDetails()" style="display: inline-block;">
-            <label for="javascript" style="display: inline-block;">Promtpay</label>
             <input type="radio" id="counterService" name="fav_language" value="CounterService" onclick="showCounterServiceDetails()" style="display: inline-block;">
             <label for="counterService" style="display: inline-block;">Counter Service</label>
-            
+            <input type="radio" id="promptpay" name="fav_language" value="CounterService" onclick="showCounterServiceDetails()" style="display: inline-block;">
+            <label for="counterService" style="display: inline-block;">Promtpay</label>
             <div id="CounterServiceDetails" style="display:none;">
               <p>{l s='' d='Shop.Theme.Actions'}</p>
               <div class="cart-overview js-cart" data-refresh-url="{url entity='cart' params=['ajax' => true, 'action' => 'refresh']}">
@@ -198,7 +197,7 @@ function performOCR(file) {
             </div>
             <!-- แสดงข้อมูลของธนาคารเมื่อคลิกที่ "ธนาคาร" -->
             <div id="bankDetails" style="display:none;">
-              <p>{l s='Bank details: Kbank 0448447561 college of computing kku' d='Shop.Theme.Actions'}</p>
+              <img src="\themes\classic\templates\checkout\_partials\steps\qr/Screenshot 2024-02-27 180233.png" alt="QR" width="500" height="">
               
             </div>
             <!-- แสดงข้อมูลของ QR Code เมื่อคลิกที่ "QR Code" -->
@@ -210,8 +209,8 @@ function performOCR(file) {
                 
             </div>
             <!-- แสดงข้อมูลของพร้อมเพย์มื่อคลิกที่ "Promtpay" -->
-            <div id="promtpayDetails" style="display:none;">
-              <p>{l s='Promtpay: 0221115554 college of computing kku' d='Shop.Theme.Actions'}</p>
+            <div id="PromtpayDetails" style="display:none;">
+              <p>{l s='0888888888 khon kaen university' d='Shop.Theme.Actions'}</p>
             </div>
 
             <div id="CounterServiceDetails" style="display:none;">
@@ -326,22 +325,6 @@ function performOCR(file) {
     document.getElementById('promtpayDetails').style.display = 'none';
     document.getElementById('CounterServiceDetails').style.display = 'none';
   }
-  function showPromptpayDetails() {
-    // แสดงข้อมูลพร้อมเพย์เมื่อคลิกที่ "Promtpay"
-    document.getElementById('promtpayDetails').style.display = 'block';
-    // ซ่อน QR Code
-    document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
-    // ซ่อนข้อมูลธนาคาร
-    document.getElementById('CounterServiceDetails').style.display = 'none';
-  }
-  function showCounterServiceDetails() {
-    // Hide other payment details
-    document.getElementById('promtpayDetails').style.display = 'none';
-    document.getElementById('qrCodeDetails').style.display = 'none';
-    document.getElementById('bankDetails').style.display = 'none';
-    // Show Counter Service details
-    document.getElementById('CounterServiceDetails').style.display = 'block';
-  }
   function showCounterServiceDetails() {
     // แสดงข้อมูลเมื่อคลิกที่ "CounterService"
     document.getElementById('CounterServiceDetails').style.display = 'block';
@@ -355,7 +338,6 @@ function performOCR(file) {
     // ซ่อนข้อมูลพร้อมเพย์
     document.getElementById('promtpayDetails').style.display = 'none';
 }
-
 
 </script>
 
