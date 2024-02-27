@@ -505,7 +505,7 @@ class ValidateCore
     {
         return empty($name) || preg_match('/^[^<>={}]*$/u', $name);
     }
-
+   
     /**
      * Check for HTML field validity (no XSS please !).
      *
@@ -1115,6 +1115,12 @@ class ValidateCore
         return preg_match('/^([^<>{}]|<br \/>)*$/i', $text);
     }
 
+
+ 
+    public static function isVatNumber($name)
+    {
+        return empty($name) || (is_numeric($name) && strlen($name) == 13);
+    }
     /**
      * Check if the value is a sort direction value (DESC/ASC).
      *
