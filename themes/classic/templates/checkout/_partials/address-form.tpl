@@ -21,12 +21,11 @@
   {if $type === "delivery"}
     <div class="form-group row">
       <div class="col-md-9 col-md-offset-3">
-        <input name = "use_same_address" id="use_same_address" type = "checkbox" value = "1" {if $use_same_address} checked {/if}>
-        <label for="use_same_address">{l s='Confirm receipt of tax invoice' d='Shop.Theme.Checkout'}</label>
+        <input name="use_same_address" id="use_same_address" type="checkbox" value="1" style="display: none;" {if $use_same_address} checked {/if}>        <label for="use_same_address">{l s='' d='Shop.Theme.Checkout'}</label>
       </div>
     </div>
   {/if}
-{/block} <br><br>
+{/block} <br>
 {block name='form_fields' append}
   {if $type === "delivery"}
     <div class="form-group row">
