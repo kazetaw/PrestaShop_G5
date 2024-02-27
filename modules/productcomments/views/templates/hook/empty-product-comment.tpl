@@ -26,8 +26,8 @@
 <div id="empty-product-comment" class="product-comment-list-item">
   {if $post_allowed}
     <button class="btn btn-comment btn-comment-big post-product-comment">
-      {% comment %} <i class="material-icons edit" data-icon="edit"></i> {% endcomment %}
-      {% comment %} {l s='Be the first to write your review' d='Modules.Productcomments.Shop'} {% endcomment %}
+      <i class="material-icons edit" data-icon="edit"></i>
+      {l s='Be the first to write your review' d='Modules.Productcomments.Shop'}
     </button>
   {else}
     {l s='No customer reviews for the moment.' d='Modules.Productcomments.Shop'}

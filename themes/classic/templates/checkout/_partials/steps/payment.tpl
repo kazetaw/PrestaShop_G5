@@ -236,4 +236,43 @@
    }
  });
 </script>
+<script>
+ function showQRCode() {
+   // แสดง QR Code เมื่อคลิกที่ "QR Code"
+   document.getElementById('qrCodeDetails').style.display = 'block';
+   // ซ่อนข้อมูลธนาคาร
+   document.getElementById('promtpayDetails').style.display = 'none';
+   
+   document.getElementById('bankDetails').style.display = 'none';
+   document.getElementById('CounterServiceDetails').style.display = 'none';
+ }
+
+ function showBankDetails() {
+   // แสดงข้อมูลธนาคารเมื่อคลิกที่ "ธนาคาร"
+   document.getElementById('bankDetails').style.display = 'block';
+   // ซ่อน QR Code
+   document.getElementById('qrCodeDetails').style.display = 'none';
+   //ซ่อน Promtpay
+   document.getElementById('promtpayDetails').style.display = 'none';
+   document.getElementById('CounterServiceDetails').style.display = 'none';
+ }
+ function showPromptpayDetails() {
+   // แสดงข้อมูลพร้อมเพย์เมื่อคลิกที่ "Promtpay"
+   document.getElementById('promtpayDetails').style.display = 'block';
+   // ซ่อน QR Code
+   document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
+   // ซ่อนข้อมูลธนาคาร
+   document.getElementById('CounterServiceDetails').style.display = 'none';
+ }
+ function showCounterServiceDetails() {
+   // Hide other payment details
+   document.getElementById('promtpayDetails').style.display = 'none';
+   document.getElementById('qrCodeDetails').style.display = 'none';
+   document.getElementById('bankDetails').style.display = 'none';
+   // Show Counter Service details
+   document.getElementById('CounterServiceDetails').style.display = 'block';
+ }
+
+
+</script>
 {/block}

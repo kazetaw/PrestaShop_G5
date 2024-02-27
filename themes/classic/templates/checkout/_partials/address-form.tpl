@@ -16,23 +16,15 @@
       data-refresh-url="{url entity='order' params=['ajax' => 1, 'action' => 'addressForm']}"
     >
 {/block}
+
 {block name='form_fields' append}
   <input type="hidden" name="saveAddress" value="{$type}">
   {if $type === "delivery"}
     <div class="form-group row">
       <div class="col-md-9 col-md-offset-3">
-        <input name="use_same_address" id="use_same_address" type="checkbox" value="1" style="display: none;" {if $use_same_address} checked {/if}>        <label for="use_same_address">{l s='' d='Shop.Theme.Checkout'}</label>
+        <input name = "use_same_address" id="use_same_address" type = "checkbox" value = "1" {if $use_same_address} checked {/if}>
+        <label for="use_same_address">{l s='Confirm receipt of tax invoice' d='Shop.Theme.Checkout'}</label>
       </div>
-    </div>
-  {/if}
-{/block} <br>
-{block name='form_fields' append}
-  {if $type === "delivery"}
-<div style="text-align: center;">
-    <label style="color: grey; margin-right:190px; display: inline-block;" for="use_same_address">{l s='ex.0999999999' d='Shop.Theme.Checkout'}</label>
-</div>
-    <div class="form-group row">
-      
     </div>
   {/if}
 {/block}

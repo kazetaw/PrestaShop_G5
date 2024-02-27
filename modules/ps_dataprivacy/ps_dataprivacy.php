@@ -124,7 +124,7 @@ class Ps_Dataprivacy extends Module
     public function hookAdditionalCustomerFormFields($params)
     {
         $label = $this->trans(
-            'Consent to the collection and use of personal data.[1][2]%message%[/2]',
+            'Customer data privacy[1][2]%message%[/2]',
             [
                 '_raw' => true,
                 '[1]' => '<br>',
@@ -223,7 +223,7 @@ class Ps_Dataprivacy extends Module
         foreach ($languages as $lang) {
             Configuration::updateValue('CUSTPRIV_MSG_AUTH', [
                 $lang['id_lang'] => $this->trans(
-                    'The personal data you provide is used to answer queries, process orders or allow access to specific information.',
+                    'The personal data you provide is used to answer queries, process orders or allow access to specific information. You have the right to modify and delete all the personal information found in the "My Account" page.',
                     [],
                     'Modules.Dataprivacy.Admin',
                     $lang['locale']),

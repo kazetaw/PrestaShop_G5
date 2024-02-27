@@ -35,7 +35,7 @@ class OnlinePayment extends PaymentModule
         $this->author = 'SEN Power of friendship';
         $this->bootstrap = true;
         parent::__construct();
-        $this->displayName = $this->l('QRCODE Payment');
+        $this->displayName = $this->l('Online payment');
         $this->description = $this->l('Accept payments by displaying QR Code and Bank account number during the checkout.');
     }
 

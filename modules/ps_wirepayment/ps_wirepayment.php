@@ -74,7 +74,7 @@ class Ps_Wirepayment extends PaymentModule
         $this->bootstrap = true;
         parent::__construct();
 
-        $this->displayName = $this->trans('Counter Service', [], 'Modules.Wirepayment.Admin');
+        $this->displayName = $this->trans('Wire payment', [], 'Modules.Wirepayment.Admin');
         $this->description = $this->trans('Accept wire payments by displaying your account details during the checkout.', [], 'Modules.Wirepayment.Admin');
         $this->confirmUninstall = $this->trans('Are you sure about removing these details?', [], 'Modules.Wirepayment.Admin');
         if ((!isset($this->owner) || !isset($this->details) || !isset($this->address)) && $this->active) {
