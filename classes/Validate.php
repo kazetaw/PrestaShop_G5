@@ -758,7 +758,11 @@ class ValidateCore
     {
         return preg_match('/^[+0-9. ()\/-]*$/', $number);
     }
-
+    public static function isPhoneNumberth($number)
+    {
+        return preg_match('/^0[0-9]{8,9}$/', $number);
+    }
+    
     /**
      * Check for barcode validity (EAN-13).
      *
