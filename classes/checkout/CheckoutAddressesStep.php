@@ -84,46 +84,13 @@ class CheckoutAddressesStepCore extends AbstractCheckoutStep
             }
             $this->setCurrent(true);
         }
-        
+
         // Can't really hurt to set the firstname and lastname.
-        if (isset($requestParameters['specific_condition'])) {
-            clearFormData(); // เรียกใช้ฟังก์ชันเพื่อล้างข้อมูลเมื่อมีเงื่อนไขที่ระบุ
-        }
+        $this->addressForm->fillWith([
+            'firstname' => $this->getCheckoutSession()->getCustomer()->firstname,
+            'lastname' => $this->getCheckoutSession()->getCustomer()->lastname,
+        ]);
 
-        if ($this->isCurrent()){
-
-            //die(var_dump($this->context->needinvoice));
-            if  ($this->context->needinvoice == 0){
-                
-                $this->addressForm->fillWith(['alias'=> 'if you want invoice input name',
-                'company'=> 'if you want invoice input name',
-                'vat_number'=> '11111111111',
-                'address1'=> 'if you want invoice input name',
-                'address2'=> 'if you want invoice input name',
-                'postcode'=> '77777',
-                'city'=> 'if you want invoice input name',
-                'phone'=> '028179999',
-                'firstname' => 'if you want invoice input name',
-                'lastname' => 'if you want invoice input name',
-                'state'=> 'if you want invoice input name',
-                'country'=> 'if you want invoice input name',
-            ])->submit();
-
-                //$this->setNextStepAsCurrent();
-                //$this->setComplete(true);
-                //$this->setNextStepAsCurrent();
-            }
-
-        }
-        
-        if (isset($requestParameters['skip_add'])) {
-            // Mark the step as complete
-            $this->setComplete(true);
-            // Move to the next step
-            $this->setNextStepAsCurrent();
-            // Return from the function
-            return $this;
-        }
         if (isset($requestParams['saveAddress'])) {
             $saved = $this->addressForm->fillWith($requestParams)->submit();
             if (!$saved) {
@@ -263,9 +230,6 @@ class CheckoutAddressesStepCore extends AbstractCheckoutStep
 
         return $this;
     }
-
-
-
 
     public function getTemplateParameters()
     {

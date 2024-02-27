@@ -54,26 +54,12 @@ class CheckoutPersonalInformationStepCore extends AbstractCheckoutStep
         $this->loginForm = $loginForm;
         $this->registerForm = $registerForm;
     }
-    
 
     public function handleRequest(array $requestParameters = [])
     {
-        
-
         // personal info step is always reachable
         $this->setReachable(true);
 
-        if (isset($requestParameters['skip_personal_info'])) {
-            
-            
-            // Mark the step as complete
-            $this->setComplete(true);
-            // Move to the next step
-            $this->setNextStepAsCurrent();
-            // Return from the function
-            return $this;
-        }
-        
         $this->registerForm
             ->fillFromCustomer(
                 $this
@@ -81,22 +67,8 @@ class CheckoutPersonalInformationStepCore extends AbstractCheckoutStep
                     ->getCheckoutSession()
                     ->getCustomer()
             );
-        $this->registerForm->fillwith([
-            'id_gender'=>'1',
-            'firstname' => 'panatthawut-test',
-            'lastname' => 'panatthawut-test',
-            'email' => 'panatthawut-test@gmail.com',
-            'customer_privacy'=>'1',
-        ]);
-        if (isset($requestParameters['submitCreate'])) {
-            if(isset($requestParameters["needinvoice"])){
-                $this->context->needinvoice = 1;
-            }
-            else{
-                $this->context->needinvoice = 0;
-                
-            }
 
+        if (isset($requestParameters['submitCreate'])) {
             $this->registerForm->fillWith($requestParameters);
             if ($this->registerForm->submit()) {
                 $this->setNextStepAsCurrent();

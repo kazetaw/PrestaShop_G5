@@ -136,7 +136,7 @@
 </div>
   <div id="payment-confirmation" class="js-payment-confirmation">
     <div class="ps-shown-by-js">
-      <button type="submit" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}">
+      <button type="button" class="btn btn-primary center-block{if !$selected_payment_option} disabled{/if}" onclick="handlePlaceOrder()">
         {l s='Place order' d='Shop.Theme.Checkout'}
       </button>
       {if $show_final_summary}
@@ -237,42 +237,25 @@
  });
 </script>
 <script>
- function showQRCode() {
-   // แสดง QR Code เมื่อคลิกที่ "QR Code"
-   document.getElementById('qrCodeDetails').style.display = 'block';
-   // ซ่อนข้อมูลธนาคาร
-   document.getElementById('promtpayDetails').style.display = 'none';
-   
-   document.getElementById('bankDetails').style.display = 'none';
-   document.getElementById('CounterServiceDetails').style.display = 'none';
- }
+  // JavaScript function to handle the slip upload and form submission
+  function handlePlaceOrder() {
+      // Perform slip upload logic here
 
- function showBankDetails() {
-   // แสดงข้อมูลธนาคารเมื่อคลิกที่ "ธนาคาร"
-   document.getElementById('bankDetails').style.display = 'block';
-   // ซ่อน QR Code
-   document.getElementById('qrCodeDetails').style.display = 'none';
-   //ซ่อน Promtpay
-   document.getElementById('promtpayDetails').style.display = 'none';
-   document.getElementById('CounterServiceDetails').style.display = 'none';
- }
- function showPromptpayDetails() {
-   // แสดงข้อมูลพร้อมเพย์เมื่อคลิกที่ "Promtpay"
-   document.getElementById('promtpayDetails').style.display = 'block';
-   // ซ่อน QR Code
-   document.getElementById('qrCodeDetails',bankDetails).style.display = 'none';
-   // ซ่อนข้อมูลธนาคาร
-   document.getElementById('CounterServiceDetails').style.display = 'none';
- }
- function showCounterServiceDetails() {
-   // Hide other payment details
-   document.getElementById('promtpayDetails').style.display = 'none';
-   document.getElementById('qrCodeDetails').style.display = 'none';
-   document.getElementById('bankDetails').style.display = 'none';
-   // Show Counter Service details
-   document.getElementById('CounterServiceDetails').style.display = 'block';
- }
+      // Example: Display a confirmation alert
+      showAlert();
 
+      // Example: Simulate form submission after a delay (adjust as needed)
+      setTimeout(function () {
+          document.getElementById('yourFormId').submit();
+      }, 2000);
+  }
 
+  function showAlert() {
+      Swal.fire({
+          title: "Payment successful!",
+          text: "Thank you for your support.",
+          icon: "success"
+      });
+  }
 </script>
 {/block}

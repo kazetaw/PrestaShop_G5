@@ -33,7 +33,6 @@
         </div>
         <div class="col-xs-12 psgdprinfo17">
             <h2>{l s='Rectification & Erasure requests' mod='psgdpr'}</h2>
-            <p>{l s='You have the right to modify all the personal information found in the "My Account" page. For any other request you might have regarding the rectification and/or erasure of your personal data, please contact us through our' mod='psgdpr'} <a href="{$psgdpr_contactUrl|escape:'htmlall':'UTF-8'}">{l s='contact page' mod='psgdpr'}</a>. {l s='We will review your request and reply as soon as possible.' mod='psgdpr'}</p>
         </div>
     </section>
 </div>

@@ -33,7 +33,7 @@
   <div class="container">
     <div class="row">
       <center>
-        Computer College 123 Mitraphap Road, Nai Mueang Subdistrict, <br>
+        Computer College 123 Mitraphap Road, Nai Mueang Subdistrict, <br><br>
         Mueang District, Khon Kaen Province 40002 Tel. 043-009700  <br><br>
     </div>
     <div class="row">
