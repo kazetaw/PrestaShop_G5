@@ -29,10 +29,11 @@
 {/block} <br><br>
 {block name='form_fields' append}
   {if $type === "delivery"}
+<div style="text-align: center;">
+    <label style="color: grey; margin-right:190px; display: inline-block;" for="use_same_address">{l s='ex.0999999999' d='Shop.Theme.Checkout'}</label>
+</div>
     <div class="form-group row">
-      <div class="col-md-9 col-md-offset-3">
-        <label style="color: grey; margin-right: 100px;" for="use_same_address">{l s='ex.0999999999' d='Shop.Theme.Checkout'}</label>
-      </div>
+      
     </div>
   {/if}
 {/block}
